@@ -40,7 +40,7 @@
                                                 <th style="font-size:14pt;"> Willamis Rodrigues </th>
                                                 <th style="font-size:14pt;"> kit. Unidade 1 Game Dev </th>
                                                 <th style="font-size:14pt;"> 04. Adobe Illustrator </th>
-                                                <th><a href="" data-toggle="modal" data-target="#modalExemplo" class="btn btn-outline-dark">
+                                                <th><a href="" data-toggle="modal" data-target="#baixamaterial" class="btn btn-outline-dark">
                                                     <i class="c-brown ti-book"></i>
                                                     Baixa Material
                                                     </a>
@@ -54,6 +54,6 @@
                         </div>
                     </div>
                 </div> 
-              @include('template.modals.index')
+              @include('template.modals.baixa')
         </main>
 @endsection

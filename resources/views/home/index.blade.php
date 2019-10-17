@@ -41,7 +41,7 @@
                                         <div class="layer w-100 mB-10">
                                             <h6 class="lh-1">
                                             <i class="c-brown ti-user"></i>
-                                            Alunos de própria</h6></div>
+                                            Alunos de Própria</h6></div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
                                                 <div class="peer peer-greed"><span id="sparklinedash2"></span></div>
@@ -73,7 +73,7 @@
                                     <div class="layer w-100 p-10">
                                         <h6 class="lh-1">
                                         <i class="c-brown ti-user"></i>
-                                        Alunos Ativos Unidades</h6>
+                                        Alunos Ativos Próprias</h6>
                                         <hr>
                                     
                                     </div>
@@ -89,6 +89,38 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="fw-600">Fortaleza</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="masonry-item col-md-6">
+                            <div class="bd bgc-white">
+                                <div class="layers">
+                                    <div class="layer w-100 p-10">
+                                        <h6 class="lh-1">
+                                        <i class="c-brown ti-user"></i>
+                                        Alunos Ativos Franquia</h6>
+                                        <hr>
+                                    
+                                    </div>
+                                    <div class="layer w-100">
+                                        <div class="table-responsive p-20">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="bdwT-0">Unidade</th>
+                                                        <th class="bdwT-0">Qtd. Alunos Ativos</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="fw-600">Campinas</td>
                                                         <td>0</td>
                                                     </tr>
                                                    

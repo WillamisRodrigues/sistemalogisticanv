@@ -23,7 +23,7 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Novo Lançamento 
-                                    <a  href="" class="btn btn-outline-dark pull-right">
+                                    <a  href="" data-toggle="modal" data-target="#lancamentos" class="btn btn-outline-dark pull-right">
                                         <i class="c-brown ti-shopping-cart"></i>
                                          Adicionar Lançamento
                                     </a>
@@ -58,6 +58,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+            @include('template.modals.lancamento') 
         </main>
 @endsection
