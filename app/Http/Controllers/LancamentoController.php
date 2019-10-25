@@ -10,4 +10,8 @@ class LancamentoController extends Controller
     {
         return view('lancamentos.index');
     }
+
+    public function store(Request $req){
+        dd($req);
+    }
 }

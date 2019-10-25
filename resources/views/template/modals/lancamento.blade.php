@@ -9,50 +9,27 @@
         </button>
       </div>
       <div class="modal-body">
-      <form>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Unidade 2:</label>
-                                                <input type="number" class="form-control" id="inputEmail4" placeholder="0">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Unidade 3 </label>
-                                                <input type="number" class="form-control" id="inputPassword4" placeholder="0">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Unidade 4:</label>
-                                                <input type="number" class="form-control" id="inputEmail4" placeholder="0">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Game Art </label>
-                                                <input type="number" class="form-control" id="inputPassword4" placeholder="0">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Game Dev:</label>
-                                                <input type="number" class="form-control" id="inputEmail4" placeholder="0">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Game Unificado </label>
-                                                <input type="number" class="form-control" id="inputPassword4" placeholder="0">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-12">
-                                                <label for="inputEmail4">Número Ecommerce:</label>
-                                                <input type="text" class="form-control" id="inputEmail4" placeholder="Ex: ABC645F4545">
-                                            </div>
-                                        </div>
-                                    
-                                    </form>
+       <form method="post" action="{{route('inserir_lancamentos')}}">
+          {{ csrf_field() }}
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">Selecione Kit:</label>
+                <select class="form-control">
+                </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">Número Ecommerce:</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="Ex: ABC645F4545">
+            </div>
+          </div> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+        <button type="submit" class="btn btn-primary">Salvar mudanças</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
