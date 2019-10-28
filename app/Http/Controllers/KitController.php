@@ -25,11 +25,12 @@ class KitController extends Controller
         $kits = DB::table('kits')
         ->join('empresas', 'empresas.id', '=', 'kits.empresa_id')
         ->select('empresas.*', 'kits.*')
+        ->orderBy('kits.created_at', 'desc')
         ->get();
 
         return Datatables::of($kits)
         ->addColumn('action', function ($user) {
-            return '<a href="#edit-'.$user->id.'" class="btn btn-md btn-warning"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            return '<a href="#edit-'.$user->id.'" class="btn btn-md btn-warning"><i class="fa fa-pencil"></i> Editar</a>';
         })
         ->make(true);
     }

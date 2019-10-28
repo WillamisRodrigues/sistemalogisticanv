@@ -23,13 +23,16 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Kits
-                                    <button type="button" name="add_kit" id="add_kit" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">Adicionar Kit </button>
+                                    <button type="button" name="add_kit" id="add_kit" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                    <i class="fa fa-book"></i>    
+                                    Adicionar Kit </button>
                                     </span>
                                     <table class="table table-bordered mt-4" id="kit_table" style="width:100%!important;">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Curso</th>
                                                 <th scope="col">Qual Empresa</th>
+                                                <th scope="col">Data Cadastro</th>
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>

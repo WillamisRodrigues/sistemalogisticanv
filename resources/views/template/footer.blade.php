@@ -19,6 +19,7 @@
         columns: [
             {data: 'nome_kit', name: 'nome_kit'},
             {data: 'nome_empresa', name: 'nome_empresa'},
+            {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         "language": {
