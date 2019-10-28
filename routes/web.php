@@ -28,4 +28,7 @@ Route::get('/cursos', ['as'=>'curso','uses'=>'CursoController@index']);
 
 //rotas de insert
 Route::post('/inserir_lancamentos',['as'=>'inserir_lancamentos','uses'=>'LancamentoController@store']);
+
 Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
+
+Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);

@@ -22,13 +22,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                                    <span class="c-grey-900 h4 mB-20">Curso
-                                    <a  href="" data-toggle="modal" data-target="#kits" class="btn btn-outline-dark pull-right">
-                                        <i class="c-brown ti-desktop"></i>
-                                         Adicionar Kit
-                                    </a>
+                                    <span class="c-grey-900 h4 mB-20">Kits
+                                    <button type="button" name="add_kit" id="add_kit" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">Adicionar Kit </button>
                                     </span>
-                                    <table class="table table-bordered mt-4">
+                                    <table class="table table-bordered mt-4" id="kit_table" style="width:100%!important;">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Curso</th>
@@ -37,17 +34,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row"  style="font-size:14pt;">OPEN CG </th>
-                                                <th scope="row"  style="font-size:14pt;">Gracom </th>
-                                                <th scope="row"> 
-                                                    <a href="" class="btn btn-outline-dark">
-                                                        <i class="c-brown ti-pencil"></i>
-                                                        Editar Curso
-                                                    </a>
-                                                </th>
-                                            </tr>
-                                        </tbody>
+        </tbody>
                                     </table>
                                 </div>
                             </div>

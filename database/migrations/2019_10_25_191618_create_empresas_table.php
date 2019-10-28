@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKitsTable extends Migration
+class CreateEmpresasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateKitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kits', function (Blueprint $table) {
+        Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome_kit');
-            $table->bigInteger('empresa_id');
+            $table->string('nome_empresa');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateKitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kits');
+        Schema::dropIfExists('empresas');
     }
 }
