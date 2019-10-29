@@ -21,6 +21,7 @@ class KitController extends Controller
 
         return view('kit.index',compact('empresas'));
     }
+    
     public function lista_kits(){
         $kits = DB::table('kits')
         ->join('empresas', 'empresas.id', '=', 'kits.empresa_id')
@@ -29,11 +30,22 @@ class KitController extends Controller
         ->get();
 
         return Datatables::of($kits)
-        ->addColumn('action', function ($user) {
-            return '<a href="#edit-'.$user->id.'" class="btn btn-md btn-warning"><i class="fa fa-pencil"></i> Editar</a>';
+        ->addColumn('action', function ($kit) {
+            $button = '<button type="button" name="edit" id="'.$kit->id.'" class="edit btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
+            return $button;
         })
         ->make(true);
     }
+    
+    public function edit($id)
+    {
+        if(request()->ajax())
+        {
+            $data = Kit::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
+    }
+
     public function store(Request $request){
         $rules = array(
             'nome_kit'    =>  'required',

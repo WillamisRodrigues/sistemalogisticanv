@@ -3,7 +3,7 @@
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-   <h4 class="modal-title">Adicionar Novo Kit</h4>
+   <h4 class="modal-title"></h4>
           <button type="button" class="close" data-dismiss="modal" id="close_kit">&times;</button>
          
         </div>

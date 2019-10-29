@@ -32,3 +32,6 @@ Route::post('/inserir_lancamentos',['as'=>'inserir_lancamentos','uses'=>'Lancame
 Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
+
+/* editar */
+Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');

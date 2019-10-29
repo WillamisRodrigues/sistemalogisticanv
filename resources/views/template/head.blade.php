@@ -14,6 +14,16 @@
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+     <script type="b2b87a95708a162dfd393efc-text/javascript" src="{{asset('assets/js/vendor.js')}}"></script>
+    <script type="b2b87a95708a162dfd393efc-text/javascript" src="{{asset('assets/js/bundle.js')}}"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/95c75768/cloudflare-static/rocket-loader.min.js" data-cf-settings="b2b87a95708a162dfd393efc-|49" defer=""></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script type="text/javascript" src="{{asset('assets/js/main.js')}}">
+</script>
+
 
 </head>
 <body class="app">
