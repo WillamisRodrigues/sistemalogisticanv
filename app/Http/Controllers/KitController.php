@@ -26,6 +26,7 @@ class KitController extends Controller
         $kits = DB::table('kits')
         ->join('empresas', 'empresas.id', '=', 'kits.empresa_id')
         ->select('empresas.*', 'kits.*')
+        ->where('kits.deleted_at',null)
         ->get();
 
         return Datatables::of($kits)
@@ -50,6 +51,7 @@ class KitController extends Controller
     public function store(Request $request){
         $rules = array(
             'nome_kit'    =>  'required',
+            'nome_empresa'    =>  'required',
         );
 
         $error = Validator::make($request->all(), $rules);

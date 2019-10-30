@@ -43,7 +43,6 @@ $(function () {
     });
 
     $('#add_kit').click(function(){
-     $('#action_button').val("Adiiconar");
      $('.modal-title').text("Adicionar Kit");
      $('#action').val("Adicionar");
      $('#kits').modal('show');
@@ -139,7 +138,7 @@ $(function () {
           $('#nome_kit').val(html.data.nome_kit);
           $('.modal-title').text("Editar Kit");
           $('#hidden_id').val(html.data.id);
-          $('#action_button').val("Edit");
+          $('#action_button').val("Salvar Edições");
           $('#kit_table').DataTable().ajax.reload();
           $('#action').val("Edit");
           $('#kits').modal('show');
@@ -165,12 +164,8 @@ $(function () {
           setTimeout(function(){
            $('#confirmModal').modal('hide');
            $('#kit_table').DataTable().ajax.reload();
+           $('#ok_button').text('OK');
           }, 1000);
          }
         })
        });
-    
-       $('#close_kit').click(function(){
-        $('#ok_button').text('OK');
-     });
-    

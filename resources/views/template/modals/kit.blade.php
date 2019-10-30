@@ -28,11 +28,11 @@
             </div>
            </div>
            <br />
-           <div class="form-group">
+           <div class="form-group col-md-12">
            <input type="hidden" id="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="action" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
-            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Adicionar" />
+            <input type="submit" name="action_button" id="action_button" class="btn btn-success" value="Adicionar" />
            </div>
          </form>
         </div>
@@ -45,7 +45,7 @@
         <div class="modal-content">
             <div class="modal-header">
             <h2 class="modal-title">Confirmation</h2>
-                <button type="button" class="close" id="close_kit"  data-dismiss="modal">&times;</button>
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <h4 class="text-center">Are you sure you want to remove this data?</h4>
