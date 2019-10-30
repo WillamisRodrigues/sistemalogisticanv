@@ -96,7 +96,7 @@ $(function () {
         {
           
         $.ajax({
-          url:"{{ route('kits.update') }}",
+          url:"kits/update",
           method:"POST",
           data:new FormData(this),
           contentType: false,
@@ -138,7 +138,9 @@ $(function () {
          success:function(html){
           $('#nome_kit').val(html.data.nome_kit);
           $('.modal-title').text("Editar Kit");
+          $('#hidden_id').val(html.data.id);
           $('#action_button').val("Edit");
+          $('#kit_table').DataTable().ajax.reload();
           $('#action').val("Edit");
           $('#kits').modal('show');
          }

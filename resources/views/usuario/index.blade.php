@@ -23,7 +23,7 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Usuários 
-                                    <a  href="" class="btn btn-outline-dark pull-right">
+                                    <a  href="/usuarios/inserir" class="btn btn-outline-dark pull-right">
                                         <i class="c-brown ti-user"></i>
                                          Adicionar Usuário
                                     </a>
@@ -38,17 +38,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($usuarios as $user)
                                             <tr>
-                                            <th scope="row"  style="font-size:14pt;">Willamis Rodrigues </th>
-                                            <th scope="row"  style="font-size:14pt;">wrodrigues153@gmail.com </th>
-                                            <th scope="row"  style="font-size:14pt;">00/00/0000 </th>
+                                            <th scope="row"  style="font-size:14pt;">{{$user->name}}</th>
+                                            <th scope="row"  style="font-size:14pt;">{{$user->email}}</th>
+                                            <th scope="row"  style="font-size:14pt;">{{$user->email_verified_at}}</th>
                                             <th scope="row"  style="font-size:14pt;">
-                                            <a href="" class="btn btn-outline-dark">
+                                            <a href="/usuarios/editar/{{$user->id}}" class="btn btn-outline-dark">
                                                         <i class="c-brown ti-pencil"></i>
                                                         Editar
+                                                    </a> 
+                                            <a href="/usuarios/apagar/{{$user->id}}" class="btn btn-outline-dark">
+                                                        <i class="c-brown ti-pencil"></i>
+                                                        Apagar
                                                     </a>
                                                 </th>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
