@@ -41,3 +41,4 @@ Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
 Route::post('kits/update', 'KitController@update')->name('kits.update');
+Route::get('kits/destroy/{id}', 'KitController@destroy');

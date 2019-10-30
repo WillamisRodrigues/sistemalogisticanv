@@ -146,3 +146,31 @@ $(function () {
          }
         })
        });
+    
+       var user_id;
+
+       $(document).on('click', '.delete', function(){
+        user_id = $(this).attr('id');
+        $('#confirmModal').modal('show');
+       });
+
+       $(document).on('click', '#ok_button', function(){
+        $.ajax({
+         url:"kits/destroy/"+user_id,
+         beforeSend:function(){
+          $('#ok_button').text('Deleting...');
+         },
+         success:function(data)
+         {
+          setTimeout(function(){
+           $('#confirmModal').modal('hide');
+           $('#kit_table').DataTable().ajax.reload();
+          }, 1000);
+         }
+        })
+       });
+    
+       $('#close_kit').click(function(){
+        $('#ok_button').text('OK');
+     });
+    

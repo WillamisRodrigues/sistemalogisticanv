@@ -91,5 +91,10 @@ class KitController extends Controller
     
             return response()->json(['success' => 'Data is successfully updated']);
         }
+        public function destroy($id)
+        {
+            $data = Kit::findOrFail($id);
+            $data->delete();
+        }
     }
     
