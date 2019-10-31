@@ -36,8 +36,10 @@ Route::get('/cursos', ['as'=>'curso','uses'=>'CursoController@index']);
 Route::post('/inserir_lancamentos',['as'=>'inserir_lancamentos','uses'=>'LancamentoController@store']);
 
 Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
+Route::post('/inserir_empresa',['as'=>'inserir_empresa','uses'=>'EmpresaController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
+Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
 Route::post('kits/update', 'KitController@update')->name('kits.update');

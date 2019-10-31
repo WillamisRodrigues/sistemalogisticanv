@@ -23,23 +23,20 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Empresas
-                                    <a  href="" class="btn btn-outline-dark pull-right">
-                                        <i class="c-brown ti-home"></i>
-                                         Adicionar Empresa
-                                    </a>
+                                    <button type="button" name="add_empresa" id="add_empresa" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                    <i class="fa fa-home"></i>    
+                                    Adicionar Empresa </button>
                                     </span>
-                                    <table class="table table-bordered mt-4">
+                                    <table class="table table-bordered mt-4" id="empresas_table">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Nome Empresa</th>
-                                                <th scope="col">Data Criação</th>
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"  style="font-size:14pt;">Unidade Teste </th>
-                                                <th scope="row"  style="font-size:14pt;">00/00/0000 </th>
                                                 <th scope="row"> 
                                                     <a href="" class="btn btn-outline-dark">
                                                         <i class="c-brown ti-pencil"></i>
@@ -54,5 +51,6 @@
                         </div>
                     </div>
                 </div> 
+            @include('template.modals.empresa') 
         </main>
 @endsection

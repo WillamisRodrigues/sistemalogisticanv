@@ -3,6 +3,10 @@ div.dataTables_wrapper div.dataTables_length select {
     display: inline-block;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: 0px!important;
+}
+
 svg{
     touch-action:none
 }
