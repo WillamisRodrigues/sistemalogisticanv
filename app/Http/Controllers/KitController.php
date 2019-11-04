@@ -67,7 +67,7 @@ class KitController extends Controller
     
             Kit::create($form_data);
     
-            return response()->json(['success' => 'Data Added successfully.']);
+            return response()->json(['success' => 'Kit Adicionado com Sucesso.']);
         }
     
         public function update(Request $request)
