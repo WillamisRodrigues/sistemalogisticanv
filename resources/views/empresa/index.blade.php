@@ -27,10 +27,11 @@
                                     <i class="fa fa-home"></i>    
                                     Adicionar Empresa </button>
                                     </span>
-                                    <table class="table table-bordered mt-4" id="empresas_table">
+                                    <table class="table table-bordered mt-4" id="empresas_table" style="width:100%!important;">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Nome Empresa</th>
+                                                <th scope="col">Data Cadastro</th>
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>

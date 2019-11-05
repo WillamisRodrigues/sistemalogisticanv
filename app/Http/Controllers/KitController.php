@@ -91,7 +91,7 @@ class KitController extends Controller
 
             Kit::whereId($request->hidden_id)->update($form_data);
     
-            return response()->json(['success' => 'Data is successfully updated']);
+            return response()->json(['success' => 'Kit Atualizado com Sucesso']);
         }
         public function destroy($id)
         {

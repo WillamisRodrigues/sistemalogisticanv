@@ -42,5 +42,8 @@ Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
+Route::get('editar_empresa/{id}/edit', 'EmpresaController@edit')->name('editar_empresa');
 Route::post('kits/update', 'KitController@update')->name('kits.update');
+Route::post('empresa/update', 'EmpresaController@update')->name('empresa.update');
 Route::get('kits/destroy/{id}', 'KitController@destroy');
+Route::get('empresa/destroy/{id}', 'EmpresaController@destroy');

@@ -50,7 +50,7 @@ $(function () {
     });
 
     $('#add_empresa').click(function(){
-        $('.modal-title').text("Adicionar Kit");
+        $('.modal-title').text("Adicionar Empresa");
         $('#action').val("Adicionar");
         $('#empresa').modal('show');
     });
@@ -72,6 +72,7 @@ $(function () {
         ajax: "http://localhost:8000/lista_empresa",
         columns: [
             {data: 'nome_empresa', name: 'nome_empresa'},
+            {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         "language": {
@@ -267,7 +268,7 @@ $(function () {
         {
           
         $.ajax({
-          url:"kits/update",
+          url:"empresa/update",
           method:"POST",
           data:new FormData(this),
           contentType: false,
@@ -289,7 +290,7 @@ $(function () {
            if(data.success)
             {
                 html = '<div class="alert alert-success">' + data.success + '</div>';
-                $('#kit_table').DataTable().ajax.reload();
+                $('#empresas_table').DataTable().ajax.reload();
                 $('#form_result').html(html);
                 $('#form_result').show();
             }
@@ -300,43 +301,43 @@ $(function () {
        });
     });
 
-    $(document).on('click', '.edit', function(){
+    $(document).on('click', '.edit_empresa', function(){
         var id = $(this).attr('id');
         $('#form_result').html('');
         $.ajax({
-         url:"/editar_kit/"+id+"/edit",
+         url:"/editar_empresa/"+id+"/edit",
          dataType:"json",
          success:function(html){
-          $('#nome_kit').val(html.data.nome_kit);
-          $('.modal-title').text("Editar Kit");
+          $('#nome_empresa').val(html.data.nome_empresa);
+          $('.modal-title').text("Editar Empresa");
           $('#hidden_id').val(html.data.id);
           $('#action_button').val("Salvar Edições");
-          $('#kit_table').DataTable().ajax.reload();
+          $('#empresas_table').DataTable().ajax.reload();
           $('#action').val("Edit");
-          $('#kits').modal('show');
+          $('#empresa').modal('show');
          }
         })
        });
     
        var user_id;
 
-       $(document).on('click', '.delete', function(){
+       $(document).on('click', '.delete_empresa', function(){
         user_id = $(this).attr('id');
-        $('#confirmModal').modal('show');
+        $('#confirmModalEmpresa').modal('show');
        });
 
-       $(document).on('click', '#ok_button', function(){
+       $(document).on('click', '#ok_button_empresa', function(){
         $.ajax({
-         url:"kits/destroy/"+user_id,
+         url:"empresa/destroy/"+user_id,
          beforeSend:function(){
-          $('#ok_button').text('Deleting...');
+          $('#ok_button_empresa').text('Deleting...');
          },
          success:function(data)
          {
           setTimeout(function(){
-           $('#confirmModal').modal('hide');
-           $('#kit_table').DataTable().ajax.reload();
-           $('#ok_button').text('OK');
+           $('#confirmModalEmpresa').modal('hide');
+           $('#empresas_table').DataTable().ajax.reload();
+           $('#ok_button_empresa').text('OK');
           }, 1000);
          }
         })

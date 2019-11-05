@@ -44,15 +44,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h2 class="modal-title">Confirmation</h2>
+            <h2 class="modal-title">Confirmação</h2>
                 <button type="button" class="close"  data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <h4 class="text-center">Are you sure you want to remove this data?</h4>
+                <h4 class="text-center">Você deseja realmente deletar este kit?</h4>
             </div>
             <div class="modal-footer">
              <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
