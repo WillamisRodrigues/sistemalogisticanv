@@ -20,6 +20,11 @@ class EmpresaController extends Controller
         return view('empresa.index');
     }
 
+    public function escolher(){
+        $empresas = Empresa::all();
+        return view('empresa.show',compact('empresas'));
+    }
+
     public function lista_empresas(){
         $empresas = Empresa::all();
 

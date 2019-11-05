@@ -23,44 +23,26 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Usuários 
-                                    <a  href="/usuarios/inserir" class="btn btn-outline-dark pull-right">
-                                        <i class="c-brown ti-user"></i>
-                                         Adicionar Usuário
-                                    </a>
+                                    <button type="button" name="add_usuario" id="add_usuario" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                    <i class="fa fa-book"></i>    
+                                    Adicionar Usuário </button>
                                     </span>
-                                    <table class="table table-bordered mt-4">
+                                    <table class="table table-bordered mt-4" id="user_table" style="width:100%;">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Email</th>
+                                                <th scope="col">nivel</th>
                                                 <th scope="col">Data Cadastro</th>
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            @foreach ($usuarios as $user)
-                                            <tr>
-                                            <th scope="row"  style="font-size:14pt;">{{$user->name}}</th>
-                                            <th scope="row"  style="font-size:14pt;">{{$user->email}}</th>
-                                            <th scope="row"  style="font-size:14pt;">{{$user->email_verified_at}}</th>
-                                            <th scope="row"  style="font-size:14pt;">
-                                            <a href="/usuarios/editar/{{$user->id}}" class="btn btn-outline-dark">
-                                                        <i class="c-brown ti-pencil"></i>
-                                                        Editar
-                                                    </a> 
-                                            <a href="/usuarios/apagar/{{$user->id}}" class="btn btn-outline-dark">
-                                                        <i class="c-brown ti-pencil"></i>
-                                                        Apagar
-                                                    </a>
-                                                </th>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div> 
+            @include('template.modals.usuario')
         </main>
 @endsection
