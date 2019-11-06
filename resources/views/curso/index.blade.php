@@ -1,5 +1,5 @@
 @extends('template.app')
- @section('titulo','Empresas : Logistica')
+ @section('titulo','Cursos : Logistica')
  @section('conteudo')   
     <div id="loader">
         <div class="spinner"></div>
@@ -23,12 +23,11 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Curso
-                                    <a  href="" class="btn btn-outline-dark pull-right">
-                                        <i class="c-brown ti-desktop"></i>
-                                         Adicionar Curso
-                                    </a>
+                                    <button type="button" name="add_curso" id="add_curso" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                    <i class="fa fa-home"></i>    
+                                    Adicionar Curso </button>
                                     </span>
-                                    <table class="table table-bordered mt-4">
+                                    <table class="table table-bordered mt-4" id="cursos_table" style="width:100%;">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Curso</th>
@@ -36,23 +35,12 @@
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row"  style="font-size:14pt;">OPEN CG </th>
-                                                <th scope="row"  style="font-size:14pt;">Gracom </th>
-                                                <th scope="row"> 
-                                                    <a href="" class="btn btn-outline-dark">
-                                                        <i class="c-brown ti-pencil"></i>
-                                                        Editar Curso
-                                                    </a>
-                                                </th>
-                                            </tr>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div> 
+            @include('template.modals.curso')
         </main>
 @endsection

@@ -39,17 +39,22 @@ Route::post('/inserir_usuario',['as'=>'inserir_usuario','uses'=>'UsuarioControll
 
 Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
 Route::post('/inserir_empresa',['as'=>'inserir_empresa','uses'=>'EmpresaController@store']);
+Route::post('/inserir_curso',['as'=>'inserir_curso','uses'=>'CursoController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 Route::get('/lista_usuarios',['as'=>'lista_usuarios','uses'=>'UsuarioController@lista_usuarios']);
+Route::get('/lista_cursos',['as'=>'lista_cursos','uses'=>'CursoController@lista_cursos']);
 
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
 Route::get('editar_empresa/{id}/edit', 'EmpresaController@edit')->name('editar_empresa');
 Route::get('editar_usuario/{id}/edit', 'UsuarioController@edit')->name('editar_usuario');
+Route::get('editar_curso/{id}/edit', 'CursoController@edit')->name('editar_curso');
 Route::post('kits/update', 'KitController@update')->name('kits.update');
+Route::post('cursos/update', 'CursoController@update')->name('cursos.update');
 Route::post('empresa/update', 'EmpresaController@update')->name('empresa.update');
 Route::post('usuario/update', 'UsuarioController@update')->name('usuario.update');
 Route::get('kits/destroy/{id}', 'KitController@destroy');
 Route::get('empresa/destroy/{id}', 'EmpresaController@destroy');
 Route::get('usuario/destroy/{id}', 'UsuarioController@destroy');
+Route::get('curso/destroy/{id}', 'CursoController@destroy');

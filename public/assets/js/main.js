@@ -43,11 +43,60 @@ $(function () {
         
     });
 
+    $(function () {
+        var table = $('#cursos_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "http://localhost:8000/lista_cursos",
+            columns: [
+                {data: 'nome_curso', name: 'nome_curso'},
+                {data: 'nome_empresa', name: 'nome_empresa'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
+                },
+                "oAria": {
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                },
+                "select": {
+                    "rows": {
+                        "_": "Selecionado %d linhas",
+                        "0": "Nenhuma linha selecionada",
+                        "1": "Selecionado 1 linha"
+                    }
+                }
+            }
+            
+        });
+
     $('#add_kit').click(function(){
      $('.modal-title').text("Adicionar Kit");
      $('#action').val("Adicionar");
      $('#kits').modal('show');
     });
+
+    $('#add_curso').click(function(){
+        $('.modal-title').text("Adicionar Curso");
+        $('#action').val("Adicionar");
+        $('#curso').modal('show');
+       });
 
     $('#add_empresa').click(function(){
         $('.modal-title').text("Adicionar Empresa");
@@ -488,11 +537,52 @@ $(function () {
         })
        });
 
+       $(document).on('click', '.edit_curso', function(){
+        var id = $(this).attr('id');
+        $('#form_result').html('');
+        $.ajax({
+         url:"/editar_curso/"+id+"/edit",
+         dataType:"json",
+         success:function(html){
+          $('#nome_curso').val(html.data.nome_curso);
+          $('.modal-title').text("Editar Curso");
+          $('#hidden_id').val(html.data.id);
+          $('#action_button').val("Salvar Edições");
+          $('#cursos_table').DataTable().ajax.reload();
+          $('#action').val("Edit");
+          $('#curso').modal('show');
+         }
+        })
+       });
+
        var user_id;
 
        $(document).on('click', '.delete_usuario', function(){
         user_id = $(this).attr('id');
         $('#confirmModalUsuario').modal('show');
+       });
+
+       $(document).on('click', '.delete_curso', function(){
+        user_id = $(this).attr('id');
+        $('#confirmModalCurso').modal('show');
+       });
+
+       
+       $(document).on('click', '#ok_button_curso', function(){
+        $.ajax({
+         url:"curso/destroy/"+user_id,
+         beforeSend:function(){
+          $('#ok_button_curso').text('Deleting...');
+         },
+         success:function(data)
+         {
+          setTimeout(function(){
+           $('#confirmModalCurso').modal('hide');
+           $('#cursos_table').DataTable().ajax.reload();
+           $('#ok_button_curso').text('OK');
+          }, 1000);
+         }
+        })
        });
 
        $(document).on('click', '#ok_button_usuario', function(){
@@ -511,7 +601,78 @@ $(function () {
          }
         })
        });
-    
-
-
+    });
+    /* cursos */
+    $('#inserir_curso').on('submit', function(event){
+        event.preventDefault();
+        
+        if($('#action').val() == 'Adicionar')
+        {
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+            url:"http://localhost:8000/inserir_curso",
+            method:"POST",
+            data: $("#inserir_curso").serialize(),
+            dataType:"json",
+            success:function(data)
+            {
+            var html = '';
+            if(data.errors)
+            {
+            html = '<div class="alert alert-danger">';
+            for(var count = 0; count < data.errors.length; count++)
+            {
+            html += '<p>' + data.errors[count] + '</p>';
+            }
+            html += '</div>';
+            }
+            if(data.success)
+            {
+            html = '<div class="alert alert-success">' + data.success + '</div>';
+            $('#inserir_curso')[0].reset();
+            $('#cursos_table').DataTable().ajax.reload();
+            }
+            $('#form_result').html(html);
+            $('#form_result').show();
+            }
+        })
+        }
+        /* editar */
+        if($('#action').val() == "Edit")
+        {
+          
+        $.ajax({
+          url:"cursos/update",
+          method:"POST",
+          data:new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          dataType:"json",
+          success:function(data)
+          {
+           var html = '';
+           if(data.errors)
+           {
+            html = '<div class="alert alert-danger">';
+            for(var count = 0; count < data.errors.length; count++)
+            {
+             html += '<p>' + data.errors[count] + '</p>';
+            }
+            html += '</div>';
+           }
+           if(data.success)
+            {
+                html = '<div class="alert alert-success">' + data.success + '</div>';
+                $('#cursos_table').DataTable().ajax.reload();
+                $('#form_result').html(html);
+                $('#form_result').show();
+            }
+            $('#form_result').html(html);
+            }
+         });
+        }
+       });
     });
