@@ -26,13 +26,14 @@ class UsuarioController extends Controller
         $usuarios = DB::table('users')
         ->join('niveis', 'niveis.id', '=', 'users.nivel')
         ->select('users.*', 'niveis.tipo')
+        ->where('users.deleted_at',null)
         ->get();
 
         return Datatables::of($usuarios)
         ->addColumn('action', function ($usuarios) {
             $button = '<button type="button" name="edit_usuario" id="'.$usuarios->id.'" class="edit_usuario btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
             $button .= '&nbsp;&nbsp;';
-            $button .= '<button type="button" name="delete" id="'.$usuarios->id.'" class="delete_usuario btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
+            $button .= '<button type="button" name="delete_usuario" id="'.$usuarios->id.'" class="delete_usuario btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
             
             return $button;
         })
@@ -98,5 +99,11 @@ class UsuarioController extends Controller
             User::whereId($request->hidden_id)->update($form_data);
     
             return response()->json(['success' => 'Usuário Atualizado com Sucesso']);
+        }
+    
+        public function destroy($id)
+        {
+            $data = User::findOrFail($id);
+            $data->delete();
         }
 }

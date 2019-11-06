@@ -487,4 +487,31 @@ $(function () {
          }
         })
        });
+
+       var user_id;
+
+       $(document).on('click', '.delete_usuario', function(){
+        user_id = $(this).attr('id');
+        $('#confirmModalUsuario').modal('show');
+       });
+
+       $(document).on('click', '#ok_button_usuario', function(){
+        $.ajax({
+         url:"usuario/destroy/"+user_id,
+         beforeSend:function(){
+          $('#ok_button_usuario').text('Deleting...');
+         },
+         success:function(data)
+         {
+          setTimeout(function(){
+           $('#confirmModalUsuario').modal('hide');
+           $('#user_table').DataTable().ajax.reload();
+           $('#ok_button_usuario').text('OK');
+          }, 1000);
+         }
+        })
+       });
+    
+
+
     });

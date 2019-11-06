@@ -52,3 +52,4 @@ Route::post('empresa/update', 'EmpresaController@update')->name('empresa.update'
 Route::post('usuario/update', 'UsuarioController@update')->name('usuario.update');
 Route::get('kits/destroy/{id}', 'KitController@destroy');
 Route::get('empresa/destroy/{id}', 'EmpresaController@destroy');
+Route::get('usuario/destroy/{id}', 'UsuarioController@destroy');
