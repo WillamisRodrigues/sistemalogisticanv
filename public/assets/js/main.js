@@ -126,6 +126,7 @@ $(function () {
         serverSide: true,
         ajax: "http://localhost:8000/lista_empresa",
         columns: [
+            {data: 'logar', name: 'logar', orderable: false, searchable: false},
             {data: 'nome_empresa', name: 'nome_empresa'},
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}

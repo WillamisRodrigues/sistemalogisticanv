@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Datatables;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 use App\Empresa;
+use App\User;
 
 class EmpresaController extends Controller
 {
@@ -34,8 +35,12 @@ class EmpresaController extends Controller
             $button .= '&nbsp;&nbsp;';
             $button .= '<button type="button" name="delete" id="'.$empresa->id.'" class="delete_empresa btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
             return $button;
-        })
+        })->addColumn('logar', function($empresa) {
+            $button = '<a href="/logar_empresa/'.$empresa->id.'" class="btn btn-success btn-md"> <i class="fa fa-home"></i> Logar </a>';
+            return $button;
+        })->rawColumns(['action', 'logar'])
         ->make(true);
+
     }
 
     public function edit($id)
@@ -88,6 +93,19 @@ class EmpresaController extends Controller
         Empresa::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Empresa Atualizada com Sucesso']);
+    }
+
+    public function LogarUnidade($id)
+    {
+        $usuario_id = auth()->user()->id;
+        
+        $rules = array(
+            $id =>  'required',
+            $usuario_id => 'required'
+        );
+        
+
+        dd($id,$usuario_id);
     }
 
     public function destroy($id)

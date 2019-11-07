@@ -2,7 +2,9 @@
                 <div class="header-container">
                     <ul class="nav-left">
                         <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a></li>
-                        <li><a class="search-toggle" href="javascript:void(0);"><i class="search-icon ti-home pdd-right-10"></i> Nome Unidade </a></li>
+                        <li><p class="mt-3 text-center">
+                            <strong> Empresa: </strong>
+                            <strong> Unidade: </strong> </p></li>
                     </ul>
                     <ul class="nav-right">
                         <li class="dropdown">

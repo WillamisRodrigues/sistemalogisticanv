@@ -58,3 +58,4 @@ Route::get('kits/destroy/{id}', 'KitController@destroy');
 Route::get('empresa/destroy/{id}', 'EmpresaController@destroy');
 Route::get('usuario/destroy/{id}', 'UsuarioController@destroy');
 Route::get('curso/destroy/{id}', 'CursoController@destroy');
+Route::get('logar_empresa/{id}/', 'EmpresaController@LogarUnidade');

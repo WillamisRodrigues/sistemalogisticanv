@@ -30,6 +30,7 @@
                                     <table class="table table-bordered mt-4" id="empresas_table" style="width:100%!important;">
                                         <thead class="thead-dark">
                                             <tr>
+                                                <th scope="col">Escolha Empresa</th>
                                                 <th scope="col">Nome Empresa</th>
                                                 <th scope="col">Data Cadastro</th>
                                                 <th scope="col">Ação</th>
