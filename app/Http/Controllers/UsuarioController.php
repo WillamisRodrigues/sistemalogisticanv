@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Nivel;
+use App\Empresa;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Datatables;
@@ -19,13 +20,19 @@ class UsuarioController extends Controller
     public function index()
     {
         $niveis = Nivel::all();
-        return view('usuario.index',compact('niveis'));
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+        return view('usuario.index',compact('niveis','empresas'));
     }
 
     public function lista_usuarios(){
         $usuarios = DB::table('users')
         ->join('niveis', 'niveis.id', '=', 'users.nivel')
-        ->select('users.*', 'niveis.tipo')
+        ->join('empresas', 'empresas.id', '=', 'users.empresa_id')
+        ->select('users.*', 'niveis.tipo','empresas.nome_empresa')
         ->where('users.deleted_at',null)
         ->get();
 

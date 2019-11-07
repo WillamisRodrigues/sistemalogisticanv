@@ -32,7 +32,8 @@
                                             <tr>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">nivel</th>
+                                                <th scope="col">Nivel</th>
+                                                <th scope="col">Empresa</th>
                                                 <th scope="col">Data Cadastro</th>
                                                 <th scope="col">Ação</th>
                                             </tr>

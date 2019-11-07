@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
+use App\Empresa;
 
 class LancamentoController extends Controller
 {
@@ -13,7 +14,12 @@ class LancamentoController extends Controller
     
     public function index()
     {
-        return view('lancamentos.index');
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+        return view('lancamentos.index', compact('empresas'));
     }
 
     public function store(Request $req){

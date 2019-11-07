@@ -90,6 +90,9 @@ svg{
     margin:0 10px 10px 0;
     padding:3px 3px 1px
 }
+.active_unidade{
+    color: #f8c17b!important;
+}
 .jvectormap-legend-cnt-h .jvectormap-legend .jvectormap-legend-tick{
     float:left
 }

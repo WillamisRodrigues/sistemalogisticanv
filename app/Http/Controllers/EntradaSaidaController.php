@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
+use App\Empresa;
 
 class EntradaSaidaController extends Controller
 {
@@ -12,6 +13,11 @@ class EntradaSaidaController extends Controller
     }
     
     public function index(){
-        return view('entrada_saida.index');
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+        return view('entrada_saida.index',compact('empresas'));
     }
 }

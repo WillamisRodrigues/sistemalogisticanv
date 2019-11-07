@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
+use App\Empresa;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+
+        return view('home.index',compact('empresas'));
     }
 }

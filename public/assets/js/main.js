@@ -174,6 +174,7 @@ $(function () {
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'tipo', name: 'tipo'},
+                {data: 'nome_empresa', name: 'nome_empresa'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ],

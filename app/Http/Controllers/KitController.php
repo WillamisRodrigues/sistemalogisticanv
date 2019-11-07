@@ -17,7 +17,11 @@ class KitController extends Controller
     }
     
     public function index(){
-        $empresas = Empresa::all();
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
 
         return view('kit.index',compact('empresas'));
     }

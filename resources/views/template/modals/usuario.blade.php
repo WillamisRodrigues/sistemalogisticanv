@@ -22,6 +22,14 @@
                 <input type="email" class="form-control" name="email" id="email" placeholder="seuemail@email.com">
               </div>
               <div class="form-group col-md-12">
+              <label for="email_usuario">Empresa</label>
+                <select name="empresa" id="empresa" class="form-control">
+                    @foreach($empresas as $empresa)
+                    <option value="{{$empresa->id}}">{{$empresa->nome_empresa}}</option>
+                    @endforeach;
+                </select>
+              </div>
+              <div class="form-group col-md-12">
                 <label for="password">Senha</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="sua senha">
               </div>

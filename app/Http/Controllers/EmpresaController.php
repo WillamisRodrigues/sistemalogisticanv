@@ -18,7 +18,13 @@ class EmpresaController extends Controller
     }
     
     public function index(){
-        return view('empresa.index');
+        $id = auth()->user()->empresa_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+
+       return view('empresa.index',compact('empresas'));
     }
 
     public function escolher(){
@@ -97,15 +103,14 @@ class EmpresaController extends Controller
 
     public function LogarUnidade($id)
     {
-        $usuario_id = auth()->user()->id;
+        $user_id = auth()->user()->id;
         
-        $rules = array(
-            $id =>  'required',
-            $usuario_id => 'required'
+        $form_data = array(
+            'empresa_id' =>  $id
         );
-        
 
-        dd($id,$usuario_id);
+        User::whereId($user_id)->update($form_data);
+        return redirect()->route('empresas');
     }
 
     public function destroy($id)
