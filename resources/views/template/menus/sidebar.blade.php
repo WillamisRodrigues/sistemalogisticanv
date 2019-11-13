@@ -4,7 +4,7 @@
             <div class="peers ai-c fxw-nw">
                 <div class="peer peer-greed">
                     <a class="sidebar-link td-n" href="{{route('home')}}" class="td-n">
-                        <div class="logo"><img src="assets\static\images\logo.png" alt=""></div>
+                        <div class="logo"><img src="{{asset('assets\static\images\logo.png')}}" alt=""></div>
                     </a>
                 </div>
                 <div class="peer">

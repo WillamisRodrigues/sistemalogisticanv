@@ -45,7 +45,9 @@ Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 Route::get('/lista_usuarios',['as'=>'lista_usuarios','uses'=>'UsuarioController@lista_usuarios']);
 Route::get('/lista_cursos',['as'=>'lista_cursos','uses'=>'CursoController@lista_cursos']);
+Route::get('/alunos_imugi',['as'=>'alunos_imugi','uses'=>'BaixaAlunoController@alunosImugi']);
 
+Route::get('editar_imugi/{id}/edit', 'BaixaAlunoController@edit_imugi')->name('editar_imugi');
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
 Route::get('editar_empresa/{id}/edit', 'EmpresaController@edit')->name('editar_empresa');
 Route::get('editar_usuario/{id}/edit', 'UsuarioController@edit')->name('editar_usuario');

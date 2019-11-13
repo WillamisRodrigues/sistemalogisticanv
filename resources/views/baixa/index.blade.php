@@ -24,36 +24,18 @@
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Baixa de Alunos
                                     </span>
-                                    <table class="table table-bordered mt-4">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Matricula</th>
-                                                <th scope="col">Nome Completo</th>
-                                                <th scope="col">Nível</th>
-                                                <th scope="col">Modulo</th>
-                                                <th scope="col">Ação</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th style="font-size:14pt;">123456 </th>
-                                                <th style="font-size:14pt;"> Willamis Rodrigues </th>
-                                                <th style="font-size:14pt;"> kit. Unidade 1 Game Dev </th>
-                                                <th style="font-size:14pt;"> 04. Adobe Illustrator </th>
-                                                <th><a href="" data-toggle="modal" data-target="#baixamaterial" class="btn btn-outline-dark">
-                                                    <i class="c-brown ti-book"></i>
-                                                    Baixa Material
-                                                    </a>
-                                                </th>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
+                                    <div style="height:20px;"></div>
+                                    @if(auth()->user()->empresa_id == 1)
+                                        @include('baixa.gracom.index')
+                                    @else
+                                        @include('baixa.imugi.index')
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div> 
-              @include('template.modals.baixa')
+                @include('template.modals.baixaimugi') 
+                                   
         </main>
 @endsection
