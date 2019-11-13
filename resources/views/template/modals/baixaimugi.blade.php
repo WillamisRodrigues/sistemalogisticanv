@@ -14,7 +14,7 @@
           <div class="form-group">
             <label class="control-label col-md-4" >Matricula: </label>
             <div class="col-md-12">
-             <input type="text" name="matricula" id="matricula" class="form-control" />
+             <input type="text" readonly name="matricula" id="matricula" class="form-control" />
             </div>
            </div>
            <div class="form-group">
@@ -30,7 +30,7 @@
            <br />
            <div class="form-group col-md-12">
            <input type="hidden" id="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="action" id="action" />
+            <input type="hidden" name="action" value="Edit" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
             <input type="submit" name="action_button" id="action_button" class="btn btn-success" value="Adicionar" />
            </div>

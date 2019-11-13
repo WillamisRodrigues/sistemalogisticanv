@@ -53,6 +53,7 @@ Route::get('editar_empresa/{id}/edit', 'EmpresaController@edit')->name('editar_e
 Route::get('editar_usuario/{id}/edit', 'UsuarioController@edit')->name('editar_usuario');
 Route::get('editar_curso/{id}/edit', 'CursoController@edit')->name('editar_curso');
 Route::post('kits/update', 'KitController@update')->name('kits.update');
+Route::post('alunosimugi/update', 'BaixaAlunoController@update')->name('alunos_imugi.update');
 Route::post('cursos/update', 'CursoController@update')->name('cursos.update');
 Route::post('empresa/update', 'EmpresaController@update')->name('empresa.update');
 Route::post('usuario/update', 'UsuarioController@update')->name('usuario.update');

@@ -330,6 +330,48 @@ $(function () {
        });
     });
 
+    /* baixa alunos imugi */
+    $('#baixa_imugi').on('submit', function(event){
+        event.preventDefault();
+        /* editar */
+        if($('#action').val() == "Edit")
+        {
+          
+        $.ajax({
+          url:"alunosimugi/update",
+          method:"POST",
+          data:new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          dataType:"json",
+          success:function(data)
+          {
+           var html = '';
+           if(data.errors)
+           {
+            html = '<div class="alert alert-danger">';
+            for(var count = 0; count < data.errors.length; count++)
+            {
+             html += '<p>' + data.errors[count] + '</p>';
+            }
+            html += '</div>';
+           }
+           if(data.success)
+            {
+                html = '<div class="alert alert-success">' + data.success + '</div>';
+                $('#imugi_table').DataTable().ajax.reload();
+                $('#form_result').html(html);
+                $('#form_result').show();
+            }
+            $('#form_result').html(html);
+            }
+         });
+        }
+       });
+    });
+
+
     $(document).on('click', '.edit', function(){
         var id = $(this).attr('id');
         $('#form_result').html('');
@@ -355,9 +397,9 @@ $(function () {
          url:"/editar_imugi/"+id+"/edit",
          dataType:"json",
          success:function(html){
-         /*  $('#nome_kit').val(html.data.nome_kit); */
+         $('#matricula').val(html.data.matricula);
           $('.modal-title').text("Baixa Material Imugi");
-          $('#hidden_id').val(html.data.id);
+          $('#hidden_id').val(html.data.idCod);
           $('#action_button').val("Salvar Edições");
           $('#kit_table').DataTable().ajax.reload();
           $('#action').val("Edit");
@@ -739,4 +781,3 @@ $(function () {
          });
         }
        });
-    });

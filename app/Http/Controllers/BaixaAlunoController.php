@@ -54,4 +54,17 @@ class BaixaAlunoController extends Controller
             return response()->json(['data' => $data]);
         }
     }
+
+    public function update(Request $request)
+    {
+    
+        $form_data = array(
+            'nivel' =>  $request->nome_kit,
+        );
+
+        $produto = AlunoImugi::find($request->hidden_id);
+        $produto->update($form_data);
+        
+        return response()->json(['success' => 'Material Liberado com Sucesso']);
+    }
 }

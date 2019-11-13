@@ -9,4 +9,8 @@ class AlunoImugi extends Model
     protected $primaryKey = 'idCod';
     protected $table = "alunosimugi";
     protected $connection = 'imugi';
+
+    protected $fillable = [
+        'nivel'
+    ];
 }
