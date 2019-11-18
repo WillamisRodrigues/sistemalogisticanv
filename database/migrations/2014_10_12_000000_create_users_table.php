@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('nivel');
+            $table->bigInteger('unidade_id');
             $table->bigInteger('empresa_id');
             $table->softDeletes();
             $table->rememberToken();

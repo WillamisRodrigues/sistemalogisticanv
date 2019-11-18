@@ -38,14 +38,17 @@ Route::post('/inserir_lancamentos',['as'=>'inserir_lancamentos','uses'=>'Lancame
 Route::post('/inserir_usuario',['as'=>'inserir_usuario','uses'=>'UsuarioController@store']);
 
 Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
+Route::post('/inserir_lancamento',['as'=>'inserir_lancamento','uses'=>'LancamentoController@store']);
 Route::post('/inserir_empresa',['as'=>'inserir_empresa','uses'=>'EmpresaController@store']);
 Route::post('/inserir_curso',['as'=>'inserir_curso','uses'=>'CursoController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 Route::get('/lista_usuarios',['as'=>'lista_usuarios','uses'=>'UsuarioController@lista_usuarios']);
+Route::get('/lista_unidades_imugi',['as'=>'lista_unidades_imugi','uses'=>'UnidadeController@lista_imugi']);
 Route::get('/lista_cursos',['as'=>'lista_cursos','uses'=>'CursoController@lista_cursos']);
 Route::get('/alunos_imugi',['as'=>'alunos_imugi','uses'=>'BaixaAlunoController@alunosImugi']);
+Route::get('/lista_lancamentos',['as'=>'lista_lancamentos','uses'=>'lancamentoController@lista_lancamentos']);
 
 Route::get('editar_imugi/{id}/edit', 'BaixaAlunoController@edit_imugi')->name('editar_imugi');
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
@@ -62,3 +65,4 @@ Route::get('empresa/destroy/{id}', 'EmpresaController@destroy');
 Route::get('usuario/destroy/{id}', 'UsuarioController@destroy');
 Route::get('curso/destroy/{id}', 'CursoController@destroy');
 Route::get('logar_empresa/{id}/', 'EmpresaController@LogarUnidade');
+Route::get('logar_unidade_imugi/{id}/', 'UnidadeController@LogarImugi');

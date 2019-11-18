@@ -16,8 +16,19 @@ class CursoController extends Controller
     }
     
     public function index(){
-        $empresas = Empresa::all();
-        return view('curso.index',compact('empresas'));
+        $id = auth()->user()->empresa_id;
+        $unidade_id = auth()->user()->unidade_id;
+        $empresas = DB::table('empresas')
+        ->select('empresas.*')
+        ->where('id', $id)
+        ->get();
+
+        $unidades = DB::table('unidades')
+        ->select('unidades.*')
+        ->where('id', $unidade_id)
+        ->get();
+
+        return view('curso.index',compact('empresas','unidades'));
     }
 
     public function edit($id)

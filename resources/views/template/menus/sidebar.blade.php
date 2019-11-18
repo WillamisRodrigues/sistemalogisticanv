@@ -14,7 +14,7 @@
         </div>
         <ul class="sidebar-menu scrollable pos-r">
             <li class="nav-item mT-30 active"><a class="sidebar-link" href="{{route('home')}}" default=""><span class="icon-holder"><i class="c-brown ti-home"></i> </span><span class="title">Home</span></a></li>
-            <li class="nav-item active"><a class="sidebar-link" href="{{route('lancamentos')}}" default=""><span class="icon-holder"><i class="c-brown ti-shopping-cart"></i> </span><span class="title">Lançamentos</span></a></li>
+            <li class="nav-item active"><a class="sidebar-link" href="{{route('lancamentos')}}" default=""><span class="icon-holder"><i class="c-brown ti-shopping-cart"></i> </span><span class="title">Lançamentos / Histórico</span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('entrada_saida')}}" default=""><span class="icon-holder"><i class="c-brown ti-reload"></i> </span><span class="title">Entrada / Saída de Materiais </span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('baixa')}}" default=""><span class="icon-holder"><i class="c-brown ti-bag"></i> </span><span class="title">Baixa de Materiais</span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('unidades')}}" default=""><span class="icon-holder"><i class="c-brown ti-location-pin"></i> </span><span class="title">Unidades</span></a></li>

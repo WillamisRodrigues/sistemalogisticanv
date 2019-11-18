@@ -17,20 +17,30 @@ class KitController extends Controller
     }
     
     public function index(){
+
         $id = auth()->user()->empresa_id;
+        $unidade_id = auth()->user()->unidade_id;
+
         $empresas = DB::table('empresas')
         ->select('empresas.*')
         ->where('id', $id)
         ->get();
 
-        return view('kit.index',compact('empresas'));
+        $unidades = DB::table('unidades')
+        ->select('unidades.*')
+        ->where('id', $unidade_id)
+        ->get();
+
+        return view('kit.index',compact('empresas','unidades'));
     }
     
     public function lista_kits(){
+        $id = auth()->user()->empresa_id;
         $kits = DB::table('kits')
         ->join('empresas', 'empresas.id', '=', 'kits.empresa_id')
         ->select('empresas.*', 'kits.*')
         ->where('kits.deleted_at',null)
+        ->where('empresa_id',$id)
         ->get();
 
         return Datatables::of($kits)

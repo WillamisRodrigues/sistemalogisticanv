@@ -10,7 +10,13 @@
                              </a> 
                             @endforeach
                              </strong>
-                            <strong> Unidade: </strong> </p></li>
+                            <strong> Unidade: 
+                                @foreach($unidades as $unidade)
+                                <a href="{{route('unidades')}}" class="active_unidade"> 
+                                    {{$unidade->nome_unidade}}
+                                </a> 
+                                @endforeach 
+                            </strong> </p></li>
                     </ul>
                     <ul class="nav-right">
                         <li class="dropdown">

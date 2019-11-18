@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLancamentosTable extends Migration
+class CreateUnidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateLancamentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('lancamentos', function (Blueprint $table) {
+        Schema::create('unidades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('qtd_kit');
-            $table->bigInteger('kit_id');
-            $table->bigInteger('unidade_id');
-            $table->string('numero_ecomeerce');
+            $table->string('nome_unidade');
+            $table->bigInteger('cidade_id');
+            $table->bigInteger('estado_id');
+            $table->bigInteger('cod_sophia_id');
+            $table->bigInteger('uf_id');
+            $table->bigInteger('empresa_id');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateLancamentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lancamentos');
+        Schema::dropIfExists('unidades');
     }
 }

@@ -21,11 +21,18 @@ class UsuarioController extends Controller
     {
         $niveis = Nivel::all();
         $id = auth()->user()->empresa_id;
+        $unidade_id = auth()->user()->unidade_id;
         $empresas = DB::table('empresas')
         ->select('empresas.*')
         ->where('id', $id)
         ->get();
-        return view('usuario.index',compact('niveis','empresas'));
+
+        $unidades = DB::table('unidades')
+        ->select('unidades.*')
+        ->where('id', $unidade_id)
+        ->get();
+        
+        return view('usuario.index',compact('niveis','empresas','unidades'));
     }
 
     public function lista_usuarios(){
@@ -72,6 +79,7 @@ class UsuarioController extends Controller
                 'name' =>  $request->nome_usuario,
                 'email' =>  $request->email,
                 'nivel' =>  $request->nivel,
+                'empresa_id' => $request->empresa,
                 'password' => Hash::make($request->password),
             );
 

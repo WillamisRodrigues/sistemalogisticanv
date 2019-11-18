@@ -18,6 +18,7 @@ class BaixaAlunoController extends Controller
     
     public function index(){
         $id = auth()->user()->empresa_id;
+        $unidade_id = auth()->user()->unidade_id;
         $empresas = DB::table('empresas')
         ->select('empresas.*')
         ->where('id', $id)
@@ -28,7 +29,12 @@ class BaixaAlunoController extends Controller
         ->where('empresa_id', $id)
         ->get();
 
-        return view('baixa.index',compact('empresas','kits'));
+        $unidades = DB::table('unidades')
+        ->select('unidades.*')
+        ->where('id', $unidade_id)
+        ->get();
+
+        return view('baixa.index',compact('empresas','kits','unidades'));
     }
     public function alunosImugi(){
         $alunosImugi = DB::table('logistica.kits as kits')
