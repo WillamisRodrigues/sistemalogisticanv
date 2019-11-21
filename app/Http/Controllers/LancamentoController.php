@@ -9,6 +9,7 @@ use App\Empresa;
 use App\Lancamento;
 use App\Kit;
 use App\Lancamentos; 
+use App\Entrada;
 
 class LancamentoController extends Controller
 {
@@ -56,7 +57,8 @@ class LancamentoController extends Controller
     public function store(Request $request){
         $rules = array(
             'quantidade_kit' =>  'required',
-            'n_ecomeerce' => 'required'
+            'n_ecomeerce' => 'required',
+            'kits' => 'required'
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -71,11 +73,41 @@ class LancamentoController extends Controller
                 'unidade_id' => $request->unidade_id,
                 'numero_ecomeerce' => $request->n_ecomeerce
             );
-    
-            Lancamentos::create($form_data);
-    
+
+            if($request->kits==1){
+                $kit = 'kit_1';
+            }elseif($request->kits ==2){
+                $kit = 'kit_2';
+            }else{
+                $kit = 'kit_3';
+            }
+            $qtdKits = DB::table('lancamentos')
+                ->where('kit_id','=',$request->kits)
+                ->sum('qtd_kit');
+
+
+            $form_data_historico = array(
+                $kit =>  ($request->quantidade_kit + $qtdKits) ,
+                'unidade_id' => $request->unidade_id,
+                'empresa_id' => $request->empresa_id
+            );    
+            
+            
+            $contarEntrada = Entrada::where('unidade_id', '=', $request->unidade_id)
+            ->count();
+           
+            if($contarEntrada > 0){
+                Lancamentos::create($form_data);
+                Entrada::where('unidade_id', $request->unidade_id)->update($form_data_historico);
+            }else{
+                Lancamentos::create($form_data);
+                Entrada::create($form_data_historico);
+            }
+
             return response()->json(['success' => 'Lançamento Realizado com Sucesso.']);
         }
+       
+       
         public function update(Request $request)
         {
         

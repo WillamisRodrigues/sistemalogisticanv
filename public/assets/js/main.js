@@ -1,5 +1,50 @@
 $(function () {
     
+    var table = $('#entrada').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "http://localhost:8000/lista_entradas",
+        columns: [
+            {data: 'unidade', name: 'nome_unidade'},
+            {data: 'kit1', name: 'kit1', orderable: false, searchable: false},
+            {data: 'kit2', name: 'kit2', orderable: false, searchable: false},
+            {data: 'kit3', name: 'kit3', orderable: false, searchable: false}
+        ],
+        "language": {
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "_MENU_ resultados por página",
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sSearch": "Pesquisar",
+            "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            },
+            "select": {
+                "rows": {
+                    "_": "Selecionado %d linhas",
+                    "0": "Nenhuma linha selecionada",
+                    "1": "Selecionado 1 linha"
+                }
+            }
+        }
+        
+    });
+
+$(function () {
+    
     var table = $('#kit_table').DataTable({
         processing: true,
         serverSide: true,
@@ -918,5 +963,6 @@ $(function () {
          });
         }
        });
+    });
     });
 });

@@ -30,6 +30,16 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-12">
+                <label for="inputEmail4">Empresa:</label>
+                  <select name="empresa_id" id="empresa_id" class="form-control" readonly>
+                  @foreach($empresas as $empresa)
+                        <option value="{{$empresa->id}}">{{$empresa->nome_empresa}}</option>   
+                    @endforeach 
+                  </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
                 <label for="inputEmail4">Número Ecommerce:</label>
                   <input type="text" name="n_ecomeerce" id="n_ecomeerce" class="form-control" id="inputEmail4" placeholder="Ex: ABC645F4545">
               </div>

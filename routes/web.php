@@ -43,6 +43,7 @@ Route::post('/inserir_empresa',['as'=>'inserir_empresa','uses'=>'EmpresaControll
 Route::post('/inserir_curso',['as'=>'inserir_curso','uses'=>'CursoController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
+Route::get('/lista_entradas',['as'=>'lista_entradas','uses'=>'EntradaSaidaController@lista_entradas']);
 Route::get('/lista_empresa',['as'=>'lista_empresa','uses'=>'EmpresaController@lista_empresas']);
 Route::get('/lista_usuarios',['as'=>'lista_usuarios','uses'=>'UsuarioController@lista_usuarios']);
 Route::get('/lista_unidades_imugi',['as'=>'lista_unidades_imugi','uses'=>'UnidadeController@lista_imugi']);
