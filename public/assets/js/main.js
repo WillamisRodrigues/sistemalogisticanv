@@ -361,9 +361,7 @@ $(function () {
                 {data: 'logar', name: 'logar', orderable: false, searchable: false},
                 {data: 'nome_unidade', name: 'nome_unidade'},
                 {data: 'cidade_id', name: 'cidade_id'},
-                {data: 'uf_id', name: 'uf_id'},
                 {data: 'cod_sophia_id', name: 'cod_sophia_id'},
-                {data: 'empresa_id', name: 'empresa_id'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
             "language": {

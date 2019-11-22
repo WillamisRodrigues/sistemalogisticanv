@@ -13,6 +13,7 @@
                             <strong> Unidade: 
                                 @foreach($unidades as $unidade)
                                 <a href="{{route('unidades')}}" class="active_unidade"> 
+                                    {{Auth::user()->cod_sophia }} -
                                     {{$unidade->nome_unidade}}
                                 </a> 
                                 @endforeach 

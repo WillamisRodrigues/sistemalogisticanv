@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Empresa;
 use App\AlunoImugi;
 use App\KitImugi;
+use App\Entrada;
 
 class BaixaAlunoController extends Controller
 {
@@ -37,9 +39,11 @@ class BaixaAlunoController extends Controller
         return view('baixa.index',compact('empresas','kits','unidades'));
     }
     public function alunosImugi(){
+        $cod_sophia = Auth::user()->cod_sophia;
         $alunosImugi = DB::table('logistica.kits as kits')
-        ->rightJoin('alunos_imugi.alunosimugi as codigo', 'kits.id', '=', 'codigo.nivel')
-        ->join('alunos_imugi.turmas as turmas', 'turmas.matricula', '=', 'codigo.matricula')
+        ->rightJoin('imugi270_portaldoaluno.codigo as codigo', 'kits.id', '=', 'codigo.nivel')
+        ->join('imugi270_portaldoaluno.turmas as turmas', 'turmas.matricula', '=', 'codigo.matricula')
+        ->where('codigo.codUnidade',$cod_sophia)
         ->select('codigo.idCod', 'codigo.codUnidade','codigo.nivel','codigo.matricula','codigo.unidade',
         'codigo.curso', 'turmas.nome','kits.nome_kit')
         ->get();
@@ -70,6 +74,39 @@ class BaixaAlunoController extends Controller
 
         $produto = AlunoImugi::find($request->hidden_id);
         $produto->update($form_data);
+
+        $kit =  DB::table('entrada')
+        ->where('unidade_id',$request->unidade_id)
+        ->select('kit_1')
+        ->sum('kit_1');
+       
+        $kit2 =  DB::table('entrada')
+        ->where('unidade_id',$request->unidade_id)
+        ->select('kit_2')
+        ->sum('kit_2');
+       
+        $kit3 =  DB::table('entrada')
+        ->where('unidade_id',$request->unidade_id)
+        ->select('kit_3')
+        ->sum('kit_3');
+
+        if($request->nome_kit ==1){
+            $retirar = 'kit_1';
+            $aluno = ($kit - 1);
+        }elseif($request->nome_kit ==2){
+            $retirar = 'kit_2';
+            $aluno = ($kit2 - 1);
+        }else{
+            $retirar = 'kit_3';
+            $aluno = ($kit3 - 1);
+        }
+
+        $form_data_baixa = array(
+            $retirar =>  $aluno,
+        );
+        
+        $condicao = ['unidade_id' => $request->unidade_id, 'empresa_id' => $request->empresa_id];
+        Entrada::where($condicao)->update($form_data_baixa);
         
         return response()->json(['success' => 'Material Liberado com Sucesso']);
     }

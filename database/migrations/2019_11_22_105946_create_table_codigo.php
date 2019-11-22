@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlunosimugiTable extends Migration
+class CreateTableCodigo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAlunosimugiTable extends Migration
      */
     public function up()
     {
-        Schema::connection('imugi')->create('alunosimugi', function (Blueprint $table) {
+        Schema::create('table_codigo', function (Blueprint $table) {
             $table->bigIncrements('idCod');
             $table->bigInteger('codUnidade');
             $table->bigInteger('nivel');
@@ -32,6 +32,6 @@ class CreateAlunosimugiTable extends Migration
      */
     public function down()
     {
-        Schema::connection('imugi')->dropIfExists('alunosimugi');
+        Schema::dropIfExists('table_codigo');
     }
 }

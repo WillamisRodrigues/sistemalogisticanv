@@ -11,9 +11,7 @@
                                                 <th scope="col">Admin</th>
                                                 <th scope="col">Unidade</th>
                                                 <th scope="col">Cidade</th>
-                                                <th scope="col">UF</th>
                                                 <th scope="col">Cod. Sophia </th>
-                                                <th scope="col"> Empresa</th>
                                                 <th scope="col">Ação</th>
                                             </tr>
                                         </thead>

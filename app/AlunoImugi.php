@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AlunoImugi extends Model
 {
     protected $primaryKey = 'idCod';
-    protected $table = "alunosimugi";
+    protected $table = "codigo";
     protected $connection = 'imugi';
 
     protected $fillable = [

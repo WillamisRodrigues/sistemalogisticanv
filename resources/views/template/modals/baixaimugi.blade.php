@@ -30,6 +30,8 @@
            <br />
            <div class="form-group col-md-12">
            <input type="hidden" id="_token" value="{{ csrf_token() }}">
+           <input type="hidden" name="empresa_id" id="empresa_id" value="{{ auth()->user()->empresa_id }}">
+           <input type="hidden" name="unidade_id" id="unidade_id" value="{{ auth()->user()->unidade_id }}">
             <input type="hidden" name="action" value="Edit" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
             <input type="submit" name="action_button" id="action_button" class="btn btn-success" value="Adicionar" />
