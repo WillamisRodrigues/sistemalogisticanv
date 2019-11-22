@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use DB;
+use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Empresa;
+use App\AlunoImugi;
 
 class HomeController extends Controller
 {
@@ -36,6 +39,63 @@ class HomeController extends Controller
         ->where('id', $unidade_id)
         ->get();
 
-        return view('home.index',compact('empresas','unidades'));
+        $total_alunosImugi = DB::table('imugi270_portaldoaluno.turmas as turma')
+        ->join('imugi270_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->select(DB::raw('count(*) as alunosAtivos'))
+        ->count();
+
+        $alunosAtivosProprias = DB::table('imugi270_portaldoaluno.turmas as turma')
+        ->join('imugi270_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('imugi270_portaldoaluno.unidades as unidades', 'cadastro.matricula','=','unidades.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->where('tipo_unidade','=',0)
+        ->groupBy('turma.unidade')
+        ->count();
+
+        $alunosAtivosFranquias = DB::table('imugi270_portaldoaluno.turmas as turma')
+        ->join('imugi270_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('imugi270_portaldoaluno.unidades as unidades', 'cadastro.matricula','=','unidades.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->where('tipo_unidade','=',1)
+        ->groupBy('turma.unidade')
+        ->count();
+
+        return view('home.index',compact('empresas','unidades','total_alunosImugi',
+        'alunosAtivosProprias','alunosAtivosFranquias'));
+    }
+
+    public function alunos_ativos_imugi(){
+        $alunosAtivos = DB::table('imugi270_portaldoaluno.turmas as turma')
+        ->join('imugi270_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('imugi270_portaldoaluno.unidades as matricula', 'cadastro.matricula','=','matricula.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->orderBy('alunosAtivos', 'DESC')
+        ->where('tipo_unidade','=',0)
+        ->groupBy('turma.unidade')
+        ->get();
+
+           
+            return Datatables::of($alunosAtivos)->make(true);
+            
+    }
+
+    public function alunos_ativos_imugi_franquia(){
+        $alunosAtivosFranquias = DB::table('imugi270_portaldoaluno.turmas as turma')
+        ->join('imugi270_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('imugi270_portaldoaluno.unidades as unidades', 'cadastro.matricula','=','unidades.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->where('tipo_unidade','=',1)
+        ->groupBy('turma.unidade')
+        ->orderBy('alunosAtivos', 'DESC')
+        ->get();
+
+           
+            return Datatables::of($alunosAtivosFranquias)->make(true);
+            
     }
 }

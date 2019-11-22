@@ -50,6 +50,8 @@ Route::get('/lista_unidades_imugi',['as'=>'lista_unidades_imugi','uses'=>'Unidad
 Route::get('/lista_cursos',['as'=>'lista_cursos','uses'=>'CursoController@lista_cursos']);
 Route::get('/alunos_imugi',['as'=>'alunos_imugi','uses'=>'BaixaAlunoController@alunosImugi']);
 Route::get('/lista_lancamentos',['as'=>'lista_lancamentos','uses'=>'lancamentoController@lista_lancamentos']);
+Route::get('/alunos_ativos_imugi',['as'=>'alunos_ativos_imugi','uses'=>'HomeController@alunos_ativos_imugi']);
+Route::get('/alunos_ativos_imugi_franquia',['as'=>'alunos_ativos_imugi_franquia','uses'=>'HomeController@alunos_ativos_imugi_franquia']);
 
 Route::get('editar_imugi/{id}/edit', 'BaixaAlunoController@edit_imugi')->name('editar_imugi');
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');

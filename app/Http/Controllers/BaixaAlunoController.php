@@ -73,7 +73,7 @@ class BaixaAlunoController extends Controller
         );
 
         $produto = AlunoImugi::find($request->hidden_id);
-        $produto->update($form_data);
+        
 
         $kit =  DB::table('entrada')
         ->where('unidade_id',$request->unidade_id)
@@ -93,12 +93,27 @@ class BaixaAlunoController extends Controller
         if($request->nome_kit ==1){
             $retirar = 'kit_1';
             $aluno = ($kit - 1);
+            if($aluno >10){
+                $produto->update($form_data);
+            }else{
+                return response()->json(['errors' => 'Estoque esta baixo para kit 1']);
+            }
         }elseif($request->nome_kit ==2){
             $retirar = 'kit_2';
             $aluno = ($kit2 - 1);
+            if($aluno >10){
+                $produto->update($form_data);
+            }else{
+                return response()->json(['errors' => 'Estoque Baixo para o kit 2']);
+            }
         }else{
             $retirar = 'kit_3';
             $aluno = ($kit3 - 1);
+            if($aluno >10){
+                $produto->update($form_data);
+            }else{
+                return response()->json(['errors' => 'Estoque Baixo para o kit 3']);
+            }
         }
 
         $form_data_baixa = array(
