@@ -63,4 +63,32 @@ class UnidadeController extends Controller
         User::whereId($user_id)->update($form_data);
         return redirect()->route('unidades');
     }
+    
+    public function store(Request $request){
+        $rules = array(
+            'nome_unidade'    =>  'required',
+            'uf' => 'required',
+            'cidade' => 'required',
+            'cod_sophia' => 'required',
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+            $form_data = array(
+                'nome_unidade' =>  $request->nome_unidade,
+                'cidade_id' => $request->cidade,
+                'estado_id' => $request->uf,
+                'cod_sophia_id' => $request->cod_sophia,
+                'empresa_id' => $request->id_empresa
+
+            );
+    
+            UnidadesImugi::create($form_data);
+    
+            return response()->json(['success' => 'Unidade Adicionada com Sucesso.']);
+    }
 }

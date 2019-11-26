@@ -25,11 +25,11 @@
                                         @include('unidade.gracom.index')
                                     @else
                                         @include('unidade.imugi.index')
+                                        @include('template.modals.unidade')
                                     @endif
                             </div>
                         </div>
                     </div>
                 </div> 
-            @include('template.modals.unidade')
         </main>
 @endsection

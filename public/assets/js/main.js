@@ -307,6 +307,12 @@ $(function () {
             
         });
 
+    $('#add_unidade_imugi').click(function(){
+        $('.modal-title').text("Adicionar Unidade");
+        $('#action').val("Adicionar");
+        $('#unidades').modal('show');
+    });
+
     $('#add_kit').click(function(){
      $('.modal-title').text("Adicionar Kit");
      $('#action').val("Adicionar");
@@ -515,6 +521,79 @@ $(function () {
             html = '<div class="alert alert-success">' + data.success + '</div>';
             $('#inserir_kit')[0].reset();
             $('#kit_table').DataTable().ajax.reload();
+            }
+            $('#form_result').html(html);
+            $('#form_result').show();
+            }
+        })
+        }
+        /* editar */
+        if($('#action').val() == "Edit")
+        {
+          
+        $.ajax({
+          url:"kits/update",
+          method:"POST",
+          data:new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          dataType:"json",
+          success:function(data)
+          {
+           var html = '';
+           if(data.errors)
+           {
+            html = '<div class="alert alert-danger">';
+            for(var count = 0; count < data.errors.length; count++)
+            {
+             html += '<p>' + data.errors[count] + '</p>';
+            }
+            html += '</div>';
+           }
+           if(data.success)
+            {
+                html = '<div class="alert alert-success">' + data.success + '</div>';
+                $('#kit_table').DataTable().ajax.reload();
+                $('#form_result').html(html);
+                $('#form_result').show();
+            }
+            $('#form_result').html(html);
+            }
+         });
+        }
+       });
+
+       $('#inserir_unidade_imugi').on('submit', function(event){
+        event.preventDefault();
+        
+        if($('#action').val() == 'Adicionar')
+        {
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+            url:"http://localhost:8000/inserir_unidade_imugi",
+            method:"POST",
+            data: $("#inserir_unidade_imugi").serialize(),
+            dataType:"json",
+            success:function(data)
+            {
+            var html = '';
+            if(data.errors)
+            {
+            html = '<div class="alert alert-danger">';
+            for(var count = 0; count < data.errors.length; count++)
+            {
+            html += '<p>' + data.errors[count] + '</p>';
+            }
+            html += '</div>';
+            }
+            if(data.success)
+            {
+            html = '<div class="alert alert-success">' + data.success + '</div>';
+            $('#inserir_unidade_imugi')[0].reset();
+            $('#listaunidadesimugi').DataTable().ajax.reload();
             }
             $('#form_result').html(html);
             $('#form_result').show();

@@ -1,9 +1,8 @@
 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Unidades
-                                    <a  href=""  data-toggle="modal" data-target="#unidades" class="btn btn-outline-dark pull-right">
-                                        <i class="c-brown ti-location-pin"></i>
-                                         Nova Unidade Imugi
-                                    </a>
+                                    <button type="button" name="add_unidade_imugi" id="add_unidade_imugi" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                    <i class="ti ti-location-pin"></i>    
+                                    Adicionar Unidade Imugi </button>
                                     </span>
                                     <table class="table table-bordered mt-4" id="listaunidadesimugi" style="width:100%;">
                                         <thead class="thead-dark">

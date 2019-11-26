@@ -41,6 +41,7 @@ Route::post('/inserir_kit',['as'=>'inserir_kit','uses'=>'KitController@store']);
 Route::post('/inserir_lancamento',['as'=>'inserir_lancamento','uses'=>'LancamentoController@store']);
 Route::post('/inserir_empresa',['as'=>'inserir_empresa','uses'=>'EmpresaController@store']);
 Route::post('/inserir_curso',['as'=>'inserir_curso','uses'=>'CursoController@store']);
+Route::post('/inserir_unidade_imugi',['as'=>'inserir_unidade_imugi','uses'=>'UnidadeController@store']);
 
 Route::get('/lista_kit',['as'=>'lista_kit','uses'=>'KitController@lista_kits']);
 Route::get('/lista_entradas',['as'=>'lista_entradas','uses'=>'EntradaSaidaController@lista_entradas']);

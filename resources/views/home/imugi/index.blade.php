@@ -26,7 +26,7 @@
                                             Alunos de Própria</h6></div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-10 pY-15 bgc-red-50 c-red-500" style=font-size:20pt;>
+                                                <div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-10 pY-15 bgc-blue-50 c-blue-500" style=font-size:20pt;>
                                                 {{$alunosAtivosProprias}}
                                                 </span></div>
                                             </div>
