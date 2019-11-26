@@ -17,6 +17,7 @@ class CreateKitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome_kit');
             $table->bigInteger('empresa_id');
+            $table->bigInteger('numero_kit');
             $table->softDeletes();
             $table->timestamps();
         });

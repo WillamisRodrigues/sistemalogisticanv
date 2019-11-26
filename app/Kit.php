@@ -9,7 +9,7 @@ class Kit extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'nome_kit','empresa_id'
+        'nome_kit','empresa_id','numero_kit'
     ];
     protected $dates = ['deleted_at'];
 }

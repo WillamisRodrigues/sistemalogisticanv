@@ -47,17 +47,26 @@ class UnidadeController extends Controller
             $button .= '<button type="button" name="delete" id="'.$unidades->id.'" class="delete_unidade_imugi btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
             return $button;
         })->addColumn('logar', function($unidades) {
-            $button = '<a href="/logar_unidade_imugi/'.$unidades->id.'" class="btn btn-success btn-md"> <i class="fa fa-home"></i> Logar </a>';
+            $button = '<form method="get" action="/logar_unidade_imugi/"> 
+            <input type="hidden" name="unidade_id" id="unidade_id" value="'.$unidades->id.'">
+            <input type="hidden" name="cod_sophia" id="cod_sophia" value="'.$unidades->cod_sophia_id.'">
+            <button type="submit" class="btn btn-success btn-md">
+                <i class="fa fa-home"></i> 
+                Logar 
+            
+            </form>';
             return $button;
         })->rawColumns(['action', 'logar'])
         ->make(true);
     }
-    public function LogarImugi($id)
+    public function LogarImugi(Request $request)
     {
         $user_id = auth()->user()->id;
+
         
         $form_data = array(
-            'unidade_id' =>  $id
+            'unidade_id' =>  $request->unidade_id,
+            'cod_sophia' => $request->cod_sophia
         );
 
         User::whereId($user_id)->update($form_data);
@@ -91,4 +100,44 @@ class UnidadeController extends Controller
     
             return response()->json(['success' => 'Unidade Adicionada com Sucesso.']);
     }
+
+    public function edit($id)
+    {
+        if(request()->ajax())
+        {
+            $data = UnidadesImugi::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
+    }
+
+    public function update(Request $request)
+        {
+         
+            $rules = array(
+                'nome_unidade' =>  'required',
+                'uf' =>  'required',
+                'cidade' =>  'required',
+                'cod_sophia' =>  'required',
+                'id_empresa' =>  'required'
+            );
+    
+                $error = Validator::make($request->all(), $rules);
+    
+                if($error->fails())
+                {
+                    return response()->json(['errors' => $error->errors()->all()]);
+                }
+    
+            $form_data = array(
+                'nome_unidade' =>  $request->nome_unidade,
+                'cidade_id' =>  $request->cidade,
+                'estado_id' =>  $request->uf,
+                'cod_sophia_id' =>  $request->cod_sophia,
+                'empresa_id' =>  $request->id_empresa
+            );
+
+            UnidadesImugi::whereId($request->hidden_id)->update($form_data);
+    
+            return response()->json(['success' => 'Unidade Atualizada com Sucesso']);
+        }
 }

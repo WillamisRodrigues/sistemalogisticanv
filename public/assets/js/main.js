@@ -1,6 +1,6 @@
 $(function () {
     
-    var table = $('#ativos_imugi_franquia').DataTable({
+    var table = $('#gracom_table').DataTable({
         processing: true,
         serverSide: true,
         ajax: "http://localhost:8000/alunos_ativos_imugi_franquia",
@@ -41,6 +41,52 @@ $(function () {
         }
         
     });
+
+    $(function () {
+    
+        var table = $('#ativos_imugi_franquia').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "http://localhost:8000/alunos_ativos_imugi_franquia",
+            columns: [
+                {data: 'unidade', name: 'unidade'},
+                {data: 'alunosAtivos', name: 'alunosAtivos'},
+                
+            ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
+                },
+                "oAria": {
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                },
+                "select": {
+                    "rows": {
+                        "_": "Selecionado %d linhas",
+                        "0": "Nenhuma linha selecionada",
+                        "1": "Selecionado 1 linha"
+                    }
+                }
+            }
+            
+        });
+    });
+
     $(function () {
     
         var table = $('#ativos_imugi').DataTable({
@@ -605,7 +651,7 @@ $(function () {
         {
           
         $.ajax({
-          url:"kits/update",
+          url:"unidade_imugi/update",
           method:"POST",
           data:new FormData(this),
           contentType: false,
@@ -627,7 +673,7 @@ $(function () {
            if(data.success)
             {
                 html = '<div class="alert alert-success">' + data.success + '</div>';
-                $('#kit_table').DataTable().ajax.reload();
+                $('#listaunidadesimugi').DataTable().ajax.reload();
                 $('#form_result').html(html);
                 $('#form_result').show();
             }
@@ -635,6 +681,27 @@ $(function () {
             }
          });
         }
+       });
+
+       $(document).on('click', '.edit_unidade_imugi', function(){
+        var id = $(this).attr('id');
+        $('#form_result').html('');
+        $.ajax({
+         url:"/editar_unidade_imugi/"+id+"/edit",
+         dataType:"json",
+         success:function(html){
+          $('#nome_unidade').val(html.data.nome_unidade);
+          $('#uf').val(html.data.estado_id);
+          $('#cidade').val(html.data.cidade_id);
+          $('#cod_sophia').val(html.data.cod_sophia_id);
+          $('.modal-title').text("Editar Unidade Imugi");
+          $('#hidden_id').val(html.data.id);
+          $('#action_button').val("Salvar Edições");
+          $('#listaunidadesimugi').DataTable().ajax.reload();
+          $('#action').val("Edit");
+          $('#unidades').modal('show');
+         }
+        })
        });
 
        $('#inserir_lancamento').on('submit', function(event){

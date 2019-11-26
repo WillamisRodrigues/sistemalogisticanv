@@ -113,7 +113,9 @@ class EmpresaController extends Controller
         $user_id = auth()->user()->id;
         
         $form_data = array(
-            'empresa_id' =>  $id
+            'empresa_id' =>  $id,
+            'unidade_id' => null,
+            'cod_sophia' => null
         );
 
         User::whereId($user_id)->update($form_data);

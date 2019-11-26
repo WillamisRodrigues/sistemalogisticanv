@@ -22,7 +22,7 @@
             <div class="col-md-12">
              <select name="nome_kit" id="nome_kit" class="form-control">
                 @foreach($kits as $kit)
-                  <option value="{{$kit->id}}">{{$kit->nome_kit}}</option>
+                  <option value="{{$kit->numero_kit}}">{{$kit->nome_kit}}</option>
                 @endforeach
               </select>
             </div>

@@ -27,7 +27,7 @@ class BaixaAlunoController extends Controller
         ->get();
 
         $kits = DB::table('kits')
-        ->select('kits.id','nome_kit')
+        ->select('kits.id','nome_kit','kits.numero_kit')
         ->where('empresa_id', $id)
         ->get();
 
@@ -40,10 +40,12 @@ class BaixaAlunoController extends Controller
     }
     public function alunosImugi(){
         $cod_sophia = Auth::user()->cod_sophia;
+        $empresa_id = Auth::user()->empresa_id;
         $alunosImugi = DB::table('logistica.kits as kits')
-        ->rightJoin('imugi270_portaldoaluno.codigo as codigo', 'kits.id', '=', 'codigo.nivel')
+        ->rightJoin('imugi270_portaldoaluno.codigo as codigo', 'kits.numero_kit', '=', 'codigo.nivel')
         ->join('imugi270_portaldoaluno.turmas as turmas', 'turmas.matricula', '=', 'codigo.matricula')
         ->where('codigo.codUnidade',$cod_sophia)
+        ->where('kits.empresa_id',$empresa_id)
         ->select('codigo.idCod', 'codigo.codUnidade','codigo.nivel','codigo.matricula','codigo.unidade',
         'codigo.curso', 'turmas.nome','kits.nome_kit')
         ->get();
