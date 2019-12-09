@@ -45,10 +45,14 @@ class KitController extends Controller
 
         return Datatables::of($kits)
         ->addColumn('action', function ($kit) {
-            $button = '<button type="button" name="edit" id="'.$kit->id.'" class="edit btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
-            $button .= '&nbsp;&nbsp;';
-            $button .= '<button type="button" name="delete" id="'.$kit->id.'" class="delete btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
-            return $button;
+            if(auth()->user()->nivel != 2){
+                $button = "Você precisa do perfil Master";
+            }else{
+                $button = '<button type="button" name="edit" id="'.$kit->id.'" class="edit btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
+                $button .= '&nbsp;&nbsp;';
+                $button .= '<button type="button" name="delete" id="'.$kit->id.'" class="delete btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
+            }
+                return $button;
         })
         ->make(true);
     }

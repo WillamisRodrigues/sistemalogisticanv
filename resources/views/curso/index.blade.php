@@ -23,9 +23,11 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Curso
-                                    <button type="button" name="add_curso" id="add_curso" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
-                                    <i class="fa fa-home"></i>    
-                                    Adicionar Curso </button>
+                                    @if(auth()->user()->nivel == 2)
+                                        <button type="button" name="add_curso" id="add_curso" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                        <i class="fa fa-home"></i>    
+                                        Adicionar Curso </button>
+                                    @endif
                                     </span>
                                     <table class="table table-bordered mt-4" id="cursos_table" style="width:100%;">
                                         <thead class="thead-dark">

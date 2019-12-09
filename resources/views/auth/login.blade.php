@@ -14,7 +14,7 @@
       <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url(assets/static/images/bg.jpg)">
       </div>
       <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
-        <h4 class="fw-300 c-grey-900 mB-40"> <i class="c-brown ti-lock"></i> Área da Logistica </h4>
+        <h4 class="fw-300 c-grey-900 mB-40"> <i class="c-brown ti-lock"></i> Área da Logistica / Imugi </h4>
         <form  method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
         <div class="form-group">

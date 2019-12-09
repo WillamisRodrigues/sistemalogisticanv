@@ -814,7 +814,7 @@ $(function () {
           $('.modal-title').text("Baixa Material Imugi");
           $('#hidden_id').val(html.data.idCod);
           $('#action_button').val("Salvar Edições");
-          $('#kit_table').DataTable().ajax.reload();
+          $('#imugi_table').DataTable().ajax.reload();
           $('#action').val("Edit");
           $('#baixaimugi').modal('show');
          }

@@ -6,7 +6,6 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Empresa;
-use App\AlunoImugi;
 
 class HomeController extends Controller
 {
@@ -29,6 +28,7 @@ class HomeController extends Controller
     {
         $id = auth()->user()->empresa_id;
         $unidade_id = auth()->user()->unidade_id;
+        
         $empresas = DB::table('empresas')
         ->select('empresas.*')
         ->where('id', $id)
@@ -44,9 +44,21 @@ class HomeController extends Controller
         'cadastro.matricula', '=', 'turma.matricula')
         ->select(DB::raw('count(*) as alunosAtivos'))
         ->count();
+        
+        $total_alunosGracom = DB::table('graco168_portaldoaluno.turmas as turma')
+        ->join('graco168_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->select(DB::raw('count(*) as alunosAtivos'))
+        ->count();
 
         $alunosAtivosProprias = DB::table('imugi270_portaldoaluno.alunos_cadastro as alunos')
         ->join('imugi270_portaldoaluno.unidades as unidades', 
+        'alunos.matricula', '=', 'unidades.matricula')
+        ->where('unidades.tipo_unidade','=',0)
+        ->count();
+
+        $alunosAtivosPropriasGracom = DB::table('graco168_portaldoaluno.alunos_cadastro as alunos')
+        ->join('graco168_portaldoaluno.unidades as unidades', 
         'alunos.matricula', '=', 'unidades.matricula')
         ->where('unidades.tipo_unidade','=',0)
         ->count();
@@ -57,8 +69,17 @@ class HomeController extends Controller
         ->where('unidades.tipo_unidade','=',1)
         ->count();
 
-        return view('home.index',compact('empresas','unidades','total_alunosImugi',
-        'alunosAtivosProprias','alunosAtivosFranquias'));
+        $alunosAtivosFranquiasGracom = DB::table('graco168_portaldoaluno.alunos_cadastro as alunos')
+        ->join('graco168_portaldoaluno.unidades as unidades', 
+        'alunos.matricula', '=', 'unidades.matricula')
+        ->where('unidades.tipo_unidade','=',1)
+        ->count();
+
+        
+        $dados = ['empresas','unidades','total_alunosImugi','total_alunosGracom','alunosAtivosProprias',
+        'alunosAtivosPropriasGracom','alunosAtivosFranquias','alunosAtivosFranquiasGracom'];
+        
+        return view('home.index',compact($dados));
     }
 
     public function alunos_ativos_imugi(){
@@ -71,10 +92,7 @@ class HomeController extends Controller
         ->where('tipo_unidade','=',0)
         ->groupBy('turma.unidade')
         ->get();
-
-           
-            return Datatables::of($alunosAtivos)->make(true);
-            
+        return Datatables::of($alunosAtivos)->make(true);    
     }
 
     public function alunos_ativos_imugi_franquia(){
@@ -88,7 +106,36 @@ class HomeController extends Controller
         ->orderBy('alunosAtivos', 'DESC')
         ->get();
 
-           
+            return Datatables::of($alunosAtivosFranquias)->make(true);
+            
+    }
+
+    public function alunos_ativos_gracom(){
+        $alunosAtivosFranquias = DB::table('graco168_portaldoaluno.turmas as turma')
+        ->join('graco168_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('graco168_portaldoaluno.unidades as unidades', 'cadastro.matricula','=','unidades.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->where('tipo_unidade','=',0)
+        ->groupBy('turma.unidade')
+        ->orderBy('alunosAtivos', 'DESC')
+        ->get();
+        
+            return Datatables::of($alunosAtivosFranquias)->make(true);
+            
+    }
+    
+    public function alunos_ativos_gracom_franquia(){
+        $alunosAtivosFranquias = DB::table('graco168_portaldoaluno.turmas as turma')
+        ->join('graco168_portaldoaluno.alunos_cadastro as cadastro', 
+        'cadastro.matricula', '=', 'turma.matricula')
+        ->join('graco168_portaldoaluno.unidades as unidades', 'cadastro.matricula','=','unidades.matricula')
+        ->select(DB::raw('turma.unidade, count(*) as alunosAtivos'))
+        ->where('tipo_unidade','=',1)
+        ->groupBy('turma.unidade')
+        ->orderBy('alunosAtivos', 'DESC')
+        ->get();
+
             return Datatables::of($alunosAtivosFranquias)->make(true);
             
     }

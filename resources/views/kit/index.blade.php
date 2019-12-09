@@ -23,9 +23,11 @@
                             <div class="col-md-12">
                                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                                     <span class="c-grey-900 h4 mB-20">Kits
-                                    <button type="button" name="add_kit" id="add_kit" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
-                                    <i class="fa fa-book"></i>    
-                                    Adicionar Kit </button>
+                                    @if(auth()->user()->nivel == 2)
+                                        <button type="button" name="add_kit" id="add_kit" class="btn btn-dark btn-md pull-right" style="margin-bottom:20px;">
+                                        <i class="fa fa-book"></i>    
+                                        Adicionar Kit </button>
+                                    @endif
                                     </span>
                                     <table class="table table-bordered mt-4" id="kit_table" style="width:100%!important;">
                                         <thead class="thead-dark">

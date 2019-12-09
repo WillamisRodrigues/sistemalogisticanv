@@ -42,9 +42,14 @@ class UnidadeController extends Controller
 
         return Datatables::of($unidades)
         ->addColumn('action', function ($unidades) {
-            $button = '<button type="button" name="edit" id="'.$unidades->id.'" class="edit_unidade_imugi btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
-            $button .= '&nbsp;&nbsp;';
-            $button .= '<button type="button" name="delete" id="'.$unidades->id.'" class="delete_unidade_imugi btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
+            if(auth()->user()->nivel != 2){
+                $button = "Você precisa do perfil Master";
+            }else{
+                $button = '<button type="button" name="edit" id="'.$unidades->id.'" class="edit_unidade_imugi btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
+                $button .= '&nbsp;&nbsp;';
+                $button .= '<button type="button" name="delete" id="'.$unidades->id.'" class="delete_unidade_imugi btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
+               
+            }
             return $button;
         })->addColumn('logar', function($unidades) {
             $button = '<form method="get" action="/logar_unidade_imugi/"> 

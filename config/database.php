@@ -118,20 +118,6 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'gracom' => [
-            'driver' => 'mysql',
-            'host' => env('DB_ANOTHER_HOST', '127.0.0.1'),
-            'port' => env('DB_ANOTHER_PORT', '3306'),
-            'database' => env('DB_ANOTHER_DATABASE', 'forge'),
-            'username' => env('DB_ANOTHER_USERNAME', 'forge'),
-            'password' => env('DB_ANOTHER_PASSWORD', ''),
-            'unix_socket' => env('DB_ANOTHER_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
 
     ],
 

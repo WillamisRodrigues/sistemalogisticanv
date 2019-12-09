@@ -48,10 +48,14 @@ class CursoController extends Controller
 
         return Datatables::of($cursos)
         ->addColumn('action', function ($curso) {
-            $button = '<button type="button" name="edit_curso" id="'.$curso->id.'" class="edit_curso btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
-            $button .= '&nbsp;&nbsp;';
-            $button .= '<button type="button" name="delete_curso" id="'.$curso->id.'" class="delete_curso btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
-            return $button;
+            if(auth()->user()->nivel != 2){
+                $button = "Você precisa do perfil Master";
+            }else{
+                $button = '<button type="button" name="edit_curso" id="'.$curso->id.'" class="edit_curso btn btn-warning btn-md"> <i class="fa fa-pencil"></i> Editar </button>';
+                $button .= '&nbsp;&nbsp;';
+                $button .= '<button type="button" name="delete_curso" id="'.$curso->id.'" class="delete_curso btn btn-danger btn-md"><i class="fa fa-trash"></i> Delete</button>';
+            }
+                return $button;
         })
         ->make(true);
     }

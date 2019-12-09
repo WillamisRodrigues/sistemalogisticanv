@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
@@ -10,7 +9,6 @@ use App\Empresa;
 use App\AlunoImugi;
 use App\KitImugi;
 use App\Entrada;
-
 class BaixaAlunoController extends Controller
 {
     public function __construct()
@@ -25,31 +23,27 @@ class BaixaAlunoController extends Controller
         ->select('empresas.*')
         ->where('id', $id)
         ->get();
-
         $kits = DB::table('kits')
         ->select('kits.id','nome_kit','kits.numero_kit')
         ->where('empresa_id', $id)
         ->get();
-
         $unidades = DB::table('unidades')
         ->select('unidades.*')
         ->where('id', $unidade_id)
         ->get();
-
         return view('baixa.index',compact('empresas','kits','unidades'));
     }
     public function alunosImugi(){
         $cod_sophia = Auth::user()->cod_sophia;
         $empresa_id = Auth::user()->empresa_id;
         $alunosImugi = DB::table('logistica.kits as kits')
-        ->rightJoin('imugi270_portaldoaluno.codigo as codigo', 'kits.numero_kit', '=', 'codigo.nivel')
-        ->join('imugi270_portaldoaluno.turmas as turmas', 'turmas.matricula', '=', 'codigo.matricula')
-        ->where('codigo.codUnidade',$cod_sophia)
-        ->where('kits.empresa_id',$empresa_id)
-        ->select('codigo.idCod', 'codigo.codUnidade','codigo.nivel','codigo.matricula','codigo.unidade',
-        'codigo.curso', 'turmas.nome','kits.nome_kit')
+        ->rightJoin('imugi270_portaldoaluno.codigo as codigoimugi', 'kits.numero_kit', '=', 'codigoimugi.nivel')
+        ->join('imugi270_portaldoaluno.turmas as turmas', 'turmas.matricula', '=', 'codigoimugi.matricula')
+        /* ->where('codigoimugi.codUnidade',$cod_sophia)
+        ->where('kits.empresa_id',$empresa_id) */
+        ->select('codigoimugi.idCod', 'codigoimugi.codUnidade','codigoimugi.nivel','codigoimugi.matricula','codigoimugi.unidade',
+        'codigoimugi.curso', 'turmas.nome','kits.nome_kit')
         ->get();
-
         return Datatables::of($alunosImugi)
         ->addColumn('action', function ($aluno) {
             $button = '<button type="button" name="edit_imugi" id="'.$aluno->idCod.'" class="edit_imugi btn btn-warning btn-md"> <i class="ti-book"></i> Baixa Material </button>';
@@ -57,26 +51,22 @@ class BaixaAlunoController extends Controller
         })
         ->make(true);
     }
-
     public function edit_imugi($id)
     {
         if(request()->ajax())
         {
-            $data = AlunoImugi::findOrFail($id);
+            $data = AlunoImugi::find($id);
             return response()->json(['data' => $data]);
         }
     }
-
     public function update(Request $request)
     {
     
         $form_data = array(
             'nivel' =>  $request->nome_kit,
         );
-
         $produto = AlunoImugi::find($request->hidden_id);
         
-
         $kit =  DB::table('entrada')
         ->where('unidade_id',$request->unidade_id)
         ->select('kit_1')
@@ -91,7 +81,6 @@ class BaixaAlunoController extends Controller
         ->where('unidade_id',$request->unidade_id)
         ->select('kit_3')
         ->sum('kit_3');
-
         if($request->nome_kit ==1){
             $retirar = 'kit_1';
             $aluno = ($kit - 1);
@@ -117,7 +106,6 @@ class BaixaAlunoController extends Controller
                 return response()->json(['errors' => 'Estoque Baixo para o kit 3']);
             }
         }
-
         $form_data_baixa = array(
             $retirar =>  $aluno,
         );

@@ -15,14 +15,16 @@
         <ul class="sidebar-menu scrollable pos-r">
             <li class="nav-item mT-30 active"><a class="sidebar-link" href="{{route('home')}}" default=""><span class="icon-holder"><i class="c-brown ti-home"></i> </span><span class="title">Home</span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('lancamentos')}}" default=""><span class="icon-holder"><i class="c-brown ti-shopping-cart"></i> </span><span class="title">Lançamentos / Histórico</span></a></li>
-            <li class="nav-item active"><a class="sidebar-link" href="{{route('entrada_saida')}}" default=""><span class="icon-holder"><i class="c-brown ti-reload"></i> </span><span class="title">Entrada / Saída de Materiais </span></a></li>
+            <li class="nav-item active"><a class="sidebar-link" href="{{route('entrada_saida')}}" default=""><span class="icon-holder"><i class="c-brown ti-reload"></i> </span><span class="title">Estoque por Unidade </span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('baixa')}}" default=""><span class="icon-holder"><i class="c-brown ti-bag"></i> </span><span class="title">Baixa de Materiais</span></a></li>
             <li class="nav-item active"><a class="sidebar-link" href="{{route('unidades')}}" default=""><span class="icon-holder"><i class="c-brown ti-location-pin"></i> </span><span class="title">Unidades</span></a></li>
             
             <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-brown ti-settings"></i> </span><span class="title">Configurações</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
                 <ul class="dropdown-menu">
+                    @if(auth()->user()->nivel == 2)
                     <li><a href="{{route('usuarios')}}">Usuários</a></li>
-                    <li><a href="{{route('empresas')}}">Empresas</a></li>
+                    @endif  
+                    <!-- <li><a href="{{route('empresas')}}">Empresas</a></li> -->
                     <li><a href="{{route('kits')}}">kits</a></li>
                     <li><a href="{{route('curso')}}">Cursos</a></li>
                 </ul>

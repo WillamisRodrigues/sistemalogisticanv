@@ -53,8 +53,9 @@ Route::get('/alunos_imugi',['as'=>'alunos_imugi','uses'=>'BaixaAlunoController@a
 Route::get('/alunos_gracom',['as'=>'alunos_gracom','uses'=>'BaixaAlunoGracomController@alunosGracom']);
 Route::get('/lista_lancamentos',['as'=>'lista_lancamentos','uses'=>'lancamentoController@lista_lancamentos']);
 Route::get('/alunos_ativos_imugi',['as'=>'alunos_ativos_imugi','uses'=>'HomeController@alunos_ativos_imugi']);
+Route::get('/alunos_ativos_gracom',['as'=>'alunos_ativos_gracom','uses'=>'HomeController@alunos_ativos_gracom']);
 Route::get('/alunos_ativos_imugi_franquia',['as'=>'alunos_ativos_imugi_franquia','uses'=>'HomeController@alunos_ativos_imugi_franquia']);
-
+Route::get('/alunos_ativos_gracom_franquia',['as'=>'alunos_ativos_gracom_franquia','uses'=>'HomeController@alunos_ativos_gracom_franquia']);
 Route::get('editar_imugi/{id}/edit', 'BaixaAlunoController@edit_imugi')->name('editar_imugi');
 Route::get('editar_kit/{id}/edit', 'KitController@edit')->name('editar_kit');
 Route::get('editar_empresa/{id}/edit', 'EmpresaController@edit')->name('editar_empresa');

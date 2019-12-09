@@ -49,7 +49,7 @@
                 <label for="inputEmail4">Selecione Kit:</label>
                   <select name="kits" id="kits" class="form-control">
                     @foreach($kits as $kit)
-                        <option value="{{$kit->id}}">{{$kit->nome_kit}}</option>   
+                        <option value="{{$kit->numero_kit}}">{{$kit->nome_kit}}</option>   
                     @endforeach 
                   </select>
               </div>
